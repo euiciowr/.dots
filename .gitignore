@@ -12,12 +12,8 @@
 pkg/
 src/
 
-First/*
-
-.gitconfig
+first/*
 
 mpd.pid
 mpd.state
-
-*.log
 
