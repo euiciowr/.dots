@@ -14,7 +14,8 @@ src/
 
 first/*
 
-*.gitconfig*
+*.gitconfig
+.gitconfig
 
 mpd.pid
 mpd.state
