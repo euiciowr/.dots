@@ -12,7 +12,9 @@
 pkg/
 src/
 
-First/
+First/*
+
+.gitconfig
 
 mpd.pid
 mpd.state
