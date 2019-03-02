@@ -1,4 +1,0 @@
-## Erro pycharm no bspwm
-https://github.com/baskerville/bspwm/issues/52
-
-
