@@ -1,10 +1,6 @@
-
-
-
-;==========================================================
-;                   VARIAVEIS                          ====
-;==========================================================
-
+#───────────────────────────────────────────
+# ──────────────── Colors  ────────────────────
+#───────────────────────────────────────────
 [colors]
 background = #343148
 ;#5a000000
@@ -19,13 +15,13 @@ white = #FFFFFF
 black = #726963
 branco = #FFFFFF
 redbar = #ff5555
-
-
 ; #490c66 #ea1d75 #fcd700 #00bbb3 
 
 
-;===================================================================================================================================================================================================
 
+#───────────────────────────────────────────
+# ──────────────── Bar Top  ───────────────────
+#───────────────────────────────────────────
 [bar/top]
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
@@ -65,9 +61,12 @@ font-8 = Font Awesome 5 Free:pixelsize=10;0
 font-9 = Font Awesome 5 Brands:pixelsize=10;0
 
 
-modules-left = calendar arrow1 space bspwm 
+#───────────────────────────────────────────
+# ──────────────── Mol  ──────────────────────
+#───────────────────────────────────────────
+modules-left = calendar arrow1 space bspwm
 modules-center = sapce space wallpaper mpd
-modules-right = temperature space battery volume space coretemps space xbacklight space memory memory2 space arrow2 menu-apps
+modules-right = cpu space temperature space battery volume space coretemps space xbacklight space memory memory2 space arrow2 menu-apps
 
 ;tray-position = right
 ;tray-padding = 2
@@ -88,8 +87,10 @@ wm-restack = bspwm
 cursor-click = pointer
 cursor-scroll = ns-resize
 
-;===============================================================================================================================================================================================================
 
+#───────────────────────────────────────────
+# ──────────────── Configs  ───────────────────
+#───────────────────────────────────────────
 [module/memory2]
 type = custom/script
 exec = free -m |awk '/^Mem/ {printf("%u%%",100*$3/$2);}'
@@ -99,6 +100,10 @@ format-prefix =
 format-foreground = ${colors.white}
 
 
+
+#───────────────────────────────────────────
+# ──────────────── Core  ─────────────────────
+#───────────────────────────────────────────
 [module/coretemps]
 type = custom/script
 exec-if = sensors
@@ -109,10 +114,9 @@ format-foreground = ${colors.white}
 format-prefix-foreground = ${colors.primary}
 
 
-;==========================================================
-;                      DECORAÇÕES                      ====      
-;==========================================================
-
+#───────────────────────────────────────────
+# ──────────────── Bar  ──────────────────────
+#───────────────────────────────────────────
 [module/arrow1]
 type = custom/text
 content = "   "
@@ -135,48 +139,12 @@ content-background = ${colors.background}
 type = custom/text
 content = " B301  "
 content-background = ${colors.primary}
-click-left = ~/.config/polybar/scripts/menu.sh options
+click-left = ~/.config/polybar/menu.sh options
 
 
 #───────────────────────────────────────────
-# ────────────────── CPU ────────────────────
+# ──────────────── Memory  ──────────────────
 #───────────────────────────────────────────
-[module/cpu]
-type = internal/cpu
-interval = 0.5
-format = <label> <ramp-coreload>
-label = 
-label-foreground = ${colors.primary}
-
-ramp-coreload-0 = ▁
-ramp-coreload-0-font = 2
-ramp-coreload-0-foreground = ${colors.white}
-ramp-coreload-1 = ▂
-ramp-coreload-1-font = 2
-ramp-coreload-1-foreground = ${colors.white}
-ramp-coreload-2 = ▃
-ramp-coreload-2-font = 2
-ramp-coreload-2-foreground = ${colors.white}
-ramp-coreload-3 = ▄
-ramp-coreload-3-font = 2
-ramp-coreload-3-foreground = ${colors.white}
-ramp-coreload-4 = ▅
-ramp-coreload-4-font = 2
-ramp-coreload-4-foreground = ${colors.white}
-ramp-coreload-5 = ▆
-ramp-coreload-5-font = 2
-ramp-coreload-5-foreground = ${colors.white}
-ramp-coreload-6 = ▇
-ramp-coreload-6-font = 2
-ramp-coreload-6-foreground = ${colors.white}
-ramp-coreload-7 = █
-ramp-coreload-7-font = 2
-ramp-coreload-7-foreground = ${colors.white}
-
-; ---------------------------------------------------------------------------- ;;
-; MEMORY
-; ---------------------------------------------------------------------------- ;;
-
 [module/memory]
 type = internal/memory
 format = <label> <bar-used>
@@ -198,15 +166,12 @@ bar-used-empty = ─
 bar-used-empty-font = 6
 bar-used-empty-foreground = #444444
 
-; ---------------------------------------------------------------------------- ;;
-; VOLUME
-; ---------------------------------------------------------------------------- ;;
 
 #───────────────────────────────────────────
-# ──────────────── VOLUME ───────────────────
+# ──────────────── VOLUME ──────────────────
 #───────────────────────────────────────────
 [module/volume]
-type = internal/alsa
+type = internal/pulse
 
 format-volume = <ramp-volume> <bar-volume>
 master-soundcard = default
@@ -249,90 +214,26 @@ bar-volume-empty = ─
 bar-volume-empty-font = 2
 bar-volume-empty-foreground = ${colors.foreground}
 
-; ---------------------------------------------------------------------------- ;;
-; XBACKLIGHT
-; ---------------------------------------------------------------------------- ;;
 
-[module/xbacklight]
-type = internal/xbacklight
-
-format = <label> <bar>
-label = 
-label-foreground = ${colors.primary}
-
-bar-width = 5
-bar-indicator = 
-bar-indicator-foreground = ${colors.white}
-bar-indicator-font = 2
-bar-fill = ─
-bar-fill-font = 2
-bar-fill-foreground = ${colors.white}
-bar-empty = ─
-bar-empty-font = 2
-bar-empty-foreground = ${colors.white}
-
-[module/backlight-acpi]
-inherit = module/xbacklight
-type = internal/backlight
-card = intel_backlight
-
-; ---------------------------------------------------------------------------- ;;
-; WALLPAPER
-; ---------------------------------------------------------------------------- ;;
-
+#───────────────────────────────────────────
+# ───────────────── Wall ────────────────────
+#───────────────────────────────────────────
 [module/wallpaper]
 type = custom/text
 content =  
 content-foreground = ${colors.primary}
-;click-left = ~/.config/polybar/scripts/wallpaper.sh x &
-click-left = ~/.config/polybar/scripts/wallpaper.sh dd &
-;click-middle = ~/.config/polybar/scripts/wallpaper.sh rr &
-click-right = ~/.config/polybar/scripts/wallpaper.sh d &
-scroll-up = ~/.config/polybar/scripts/wallpaper.sh p &
-scroll-down = ~/.config/polybar/scripts/wallpaper.sh a &
+;click-left = ~/.config/polybar/wallpaper.sh x &
+click-left = ~/.config/polybar/wallpaper.sh dd &
+;click-middle = ~/.config/polybar/wallpaper.sh rr &
+click-right = ~/.config/polybar/wallpaper.sh d &
+scroll-up = ~/.config/polybar/wallpaper.sh p &
+scroll-down = ~/.config/polybar/wallpaper.sh a &
 click-middle = scrot %Y-%m-%d-%T.png -e 'mv $f ~/Imagens/Prints/' | notify-send -i ~/.local/share/icons/customer-service.png -u normal -t 9000 'Screenshot taken and saved to ~/Imagens/Prints'
 
-; ---------------------------------------------------------------------------- ;;
-; MOONPHASE
-; ---------------------------------------------------------------------------- ;;
 
-[module/moonphase]
-type = custom/script
-interval = 60.0
-label-font = 3
-exec =  ~/.config/polybar/scripts/moonphase.py
-click-left = notify-send -i ~/.config/dunst/icons/moon.svg "Fases Lunares" "$(python2 ~/.config/polybar/scripts/moonphase.py desc)" &
-label = %output%
-format = <label>
-format-foreground = ${colors.foreground}
-;format-underline = ${colors.primary}
-
-; ---------------------------------------------------------------------------- ;;
-; ROFI
-; ---------------------------------------------------------------------------- ;;
-
-[module/rofi]
-type = custom/text
-content = ""
-content-padding = 1
-;content-background = ${colors.foreground}
-content-foreground = ${colors.primary}
-;content-underline = ${colors.primary}
-click-left = rofi -show drun -config ~/.config/rofi/relaxDrun.rasi &
-click-middle = rofi -show run -config ~/.config/rofi/relax.rasi &
-click-right = rofi -show window -config ~/.config/rofi/relaxWindow.rasi &
-
-; ---------------------------------------------------------------------------- ;;
-; DZEN2
-; ---------------------------------------------------------------------------- ;;
-
-[module/dzen2]
-type = custom/text
-content = ""
-content-padding = 2
-content-foreground = ${colors.primary}
-click-left =sh ~/Modelos/sysinfo.sh
-
+#───────────────────────────────────────────
+# ───────────────── Cale ─────────────────────
+#───────────────────────────────────────────
 [module/calendar]
 type = custom/script
 interval = 1
@@ -344,7 +245,8 @@ format-background = ${colors.primary}
 format-padding = 0.5
 label-padding = 0
 ;format-underline = ${colors.red}
-click-left = ~/.config/polybar/scripts/calendar2.sh &
+click-left =  ~/.config/polybar/calendar2.sh &
+
 
 #───────────────────────────────────────────
 # ───────────────── DATE ────────────────────
@@ -365,81 +267,39 @@ format-prefix-foreground = ${colors.foreground-alt}
 
 label = %{F#665c54}────[%{F-} %{F#83a598}%date%%{F-}%{F#b16286} %time%%{F-} %{F#665c54}]────%{F-}
 
+
 #───────────────────────────────────────────
-# ─────────────── BACKLIGHT ─────────────────
+# ─────────────── Xbackl  ─────────────────────
 #───────────────────────────────────────────
-[module/backlight]
-type = internal/backlight
-card = intel_backlight
+[module/xbacklight]
+type = internal/xbacklight
+
 format = <label> <bar>
-
 label = 
-label-foreground = ${colors.redbar}
+label-foreground = ${colors.primary}
 
-bar-width = 10
-bar-indicator = ⭓
-bar-indicator-foreground = ${colors.foreground}
+bar-width = 5
+bar-indicator = 
+bar-indicator-foreground = ${colors.white}
 bar-indicator-font = 2
 bar-fill = ─
 bar-fill-font = 2
-bar-fill-foreground = ${colors.redbar}
+bar-fill-foreground = ${colors.white}
 bar-empty = ─
 bar-empty-font = 2
-bar-empty-foreground = ${colors.foreground}
+bar-empty-foreground = ${colors.white}
+
 
 #───────────────────────────────────────────
-# ────────────────── VOL ────────────────────
+# ─────────────── CPU ──────────────────
 #───────────────────────────────────────────
-[module/vol]
+[module/cpu]
 type = custom/script
-exec = pactl list sinks | awk '/Volume/{print $12}'
 interval = 1
+exec =  ~/.config/polybar/cpu
 format =  <label>
-format-prefix =
-;format-underline = ${colors.primary}
+format-prefix = " "
 format-prefix-foreground = ${colors.primary}
-
-
-#───────────────────────────────────────────
-# ─────────────── EVERNOTE ──────────────────
-#───────────────────────────────────────────
-[module/ever]
-type = custom/text
-content =  
-content-padding = 3
-content-background = #252326
-content-foreground = ${colors.primary}
-content-underline = ${colors.primary}
-click-left = google-chrome-stable https://www.evernote.com/Home.action\?securityRegCode\=chromestore
-
-
-#───────────────────────────────────────────
-# ──────────────── UPDATE ───────────────────
-#───────────────────────────────────────────
-[module/update]
-type = custom/script
-interval = 10
-format = <label>
-label = "%output:0:30%"
-exec = sh ~/.config/polybar/scripts/update.sh
-format-underline = ${colors.primary}
-
-
-
-#───────────────────────────────────────────
-# ─────────────── MEMORYF ──────────────────
-#───────────────────────────────────────────
-[module/memoryf]
-type = custom/script
-exec = free -m |awk '/^Mem/ {printf("%u%%",100*$3/$2);}'
-interval = 2
-format =  <label>
-;format-prefix = " "
-format-prefix-foreground = ${colors.primary}
-;format-underline = ${colors.primary}
-click-left =
-
-
 
 #───────────────────────────────────────────
 # ──────────────── BSPWM ───────────────────
@@ -486,7 +346,6 @@ label-monocle-foreground =  ${colors.primary}
 #label-floating-foreground =  ${colors.primary}
 
 
-
 #───────────────────────────────────────────
 # ────────────────── MPD ────────────────────
 #───────────────────────────────────────────
@@ -529,7 +388,6 @@ bar-progress-empty-font = 3
 bar-progress-format = %{A4:mpdseek+2: A5:mpdseek-2:}%fill%%indicator%%empty%%{A A}
 
 
-
 #───────────────────────────────────────────
 # ───────────────── WLAN ────────────────────
 #───────────────────────────────────────────
@@ -558,7 +416,6 @@ ramp-signal-1-foreground = ${colors.primary}
 ramp-signal-2-foreground = ${colors.primary}
 ramp-signal-3-foreground = ${colors.primary}
 ramp-signal-4-foreground = ${colors.primary}
-
 
 
 #───────────────────────────────────────────
@@ -610,7 +467,6 @@ animation-charging-3-foreground = ${colors.primary}
 animation-charging-4-foreground = ${colors.primary}
 
 
-
 #───────────────────────────────────────────
 # ────────────── TEMPERATURE ────────────────
 #───────────────────────────────────────────
@@ -635,7 +491,6 @@ ramp-2 = 
 ramp-foreground = ${colors.primary}
 
 
-
 #───────────────────────────────────────────
 # ──────────────── SETTINGS ──────────────────
 #───────────────────────────────────────────
@@ -651,7 +506,6 @@ margin-top = 2
 margin-bottom = 2
 
 
-
 #───────────────────────────────────────────
 # ─────────────── MENU-APPS ─────────────────
 #───────────────────────────────────────────
@@ -662,7 +516,7 @@ format-spacing = 1
 format-background = ${colors.primary}
 content-background = ${colors.primary}
 expand-right= true
-label-open = "   Ghost "
+label-open = "   First "
 label-open-foreground = ${colors.white}
 content-open-foreground = ${colors.primary}
 label-open-background = ${colors.primary}
@@ -712,6 +566,6 @@ menu-3-1-exec = pycharm &
 menu-3-2 = "  "
 menu-3-2-exec = wireshark &
 menu-3-3 = " "
-menu-3-3-exec = sh $HOME/.config/polybar/scripts/Dzen2Info.sh &
+menu-3-3-exec = sh $HOME/.config/polybar/foosysinfo.sh &
 menu-3-4 = "🌔 "
 menu-3-4-exec = notify-send -i ~/.config/dunst/icons/moon.svg "Fases Lunares" "$(python2 ~/.config/polybar/scripts/moonphase.py desc)" &

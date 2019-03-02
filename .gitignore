@@ -19,4 +19,8 @@ first/*
 
 mpd.pid
 mpd.state
-
+mpd.log
+tag_cache
+mpdstate
+mpd.db
+mpd.log

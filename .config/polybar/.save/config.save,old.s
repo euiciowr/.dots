@@ -1,324 +1,103 @@
 
-;----------------------------------------------------------
-;		        I C O N E S
-;----------------------------------------------------------
-;                    
-;                     
-;                     
-;                     
-;                     
-;                     
-;                     
-;                     
-;                     
-;                     
-;                     
-;                     
-;               
 
-#───────────────────────────────────────────
-# ──────────────── COLORS ───────────────────
-#───────────────────────────────────────────
+
+;==========================================================
+;                   VARIAVEIS                          ====
+;==========================================================
+
 [colors]
-background = #262E33
+background = #343148
 ;#5a000000
 background-alt = #ebc687
-foreground =  #CCD6DD
+foreground = #B9C2C2
 foreground-alt = #665c54
-primary = #D2D2D2
-secondary = #3b5998
-alert = #689d6a
+primary = #C62168
+;#BD2B55
+secondary = #adbbc3
+alert = #5b666c
 white = #FFFFFF
-black = #3c2f2f
+black = #726963
 branco = #FFFFFF
-redbar = #D2D2D2
+redbar = #ff5555
 
-#───────────────────────────────────────────
-# ────────────── BOTTON BAR ─────────────────
-#───────────────────────────────────────────
+
+; #490c66 #ea1d75 #fcd700 #00bbb3 
+
+
+;===================================================================================================================================================================================================
+
 [bar/top]
 ;monitor = ${env:MONITOR:HDMI-1}
-width = 8%
-height = 32
-offset-x = 29.9%
-offset-y = 0.1%
+width = 100%
+height = 27
+;offset-x = 1%
+;offset-y = 1%
 ;radius = 6.0
 fixed-center = true
 
-Cores do painel
-background = #322F3A
+background = ${colors.background}
+foreground = ${colors.foreground}
 
-font-0 = misc:pixelsize=9;0
-font-1 = unifont:pixelsize=9;0
-font-2 = FontAwesome:pixelsize=9;0
-font-3 = featherpatched:pixelsize=9;0
-font-4 = Powerline Extra Symbols:pixelsize=9;0
-font-5 = Wuncon Siji:pixelsize=9;0:antialias=true;0
+line-size = 3
+;line-color = #f00
+
+border-top-size = 4
+border-top-color = ${colors.background}
+border-bottom-size = 0
+border-bottom-color = ${colors.primary}
+
+;padding-left = 0
+;padding-right = 2
+
+module-margin-left = 0
+module-margin-right = 1
+
+font-0 = Cantarell:pixelsize=10;0
+font-1 = unifont:size=8:Tewi:fontformat=truetype;0
+font-2 = FontAwesome:pixelsize=10;0
+font-3 = featherpatched:pixelsize=10;0
+font-4 = Powerline Extra Symbols:pixelsize=33;0
+font-5 = Wuncon Siji:pixelsize=8;0:antialias=true;0
 font-6 = MaterialIcons:size=9;0
+font-7 = unifont:pixelsize=9;0
+font-8 = Font Awesome 5 Free:pixelsize=10;0
+;font-9 = Font Awesome 5 Free Solid:pixelsize=10;0
+font-9 = Font Awesome 5 Brands:pixelsize=10;0
 
-modules-left =
-modules-center = bspwm
-modules-right =
+
+modules-left = calendar arrow1 space bspwm 
+modules-center = sapce space wallpaper mpd
+modules-right = cpu space temperature space battery volume space coretemps space xbacklight space memory memory2 space arrow2 menu-apps
+
+;tray-position = right
+;tray-padding = 2
+;tray-transparent = true
+;tray-background = #0063ff
+
+wm-restack = bspwm
+;wm-restack = i3
+
+;override-redirect = true
+
+;scroll-up = bspwm-desknext
+;scroll-down = bspwm-deskprev
+
+;scroll-up = i3wm-wsnext
+;scroll-down = i3wm-wsprev
 
 cursor-click = pointer
 cursor-scroll = ns-resize
 
-
-#───────────────────────────────────────────
-# ────────────── BOTTON BAR ─────────────────
-#───────────────────────────────────────────
-[bar/top2]
-;monitor = ${env:MONITOR:HDMI-1}
-width = 3%
-height = 32
-offset-x = 38%
-offset-y = 0.1%
-;radius = 6.0
-fixed-center = false
-
-Cores do painel
-background = #322F3A
-
-font-0 = misc:pixelsize=9;0
-font-1 = unifont:pixelsize=9;0
-font-2 = FontAwesome:pixelsize=9;0
-font-3 = featherpatched:pixelsize=9;0
-font-4 = Powerline Extra Symbols:pixelsize=9;0
-font-5 = Wuncon Siji:pixelsize=9;0:antialias=true;0
-font-6 = MaterialIcons:size=9;0
-
-modules-left =
-modules-center = memory2
-modules-right =
-
-
-cursor-click = pointer
-cursor-scroll = ns-resize
-
+;===============================================================================================================================================================================================================
 
 [module/memory2]
 type = custom/script
 exec = free -m |awk '/^Mem/ {printf("%u%%",100*$3/$2);}'
 interval = 2
 format =  <label>
-format-prefix = " "
-format-prefix-foreground = #D2D2D2
+format-prefix =
+format-foreground = ${colors.white}
 
-
-#───────────────────────────────────────────
-# ────────────── BOTTON BAR ─────────────────
-#───────────────────────────────────────────
-[bar/top3]
-;monitor = ${env:MONITOR:HDMI-1}
-width = 3%
-height = 32
-offset-x = 41.1%
-offset-y = 0.1%
-;radius = 6.0
-fixed-center = true
-
-Cores do painel
-background = #322F3A
-
-font-0 = misc:pixelsize=9;0
-font-1 = unifont:pixelsize=9;0
-font-2 = FontAwesome:pixelsize=9;0
-font-3 = featherpatched:pixelsize=9;0
-font-4 = Powerline Extra Symbols:pixelsize=9;0
-font-5 = Wuncon Siji:pixelsize=9;0:antialias=true;0
-font-6 = MaterialIcons:size=9;0
-
-modules-left =
-modules-center = wallpaper ever
-modules-right =
-
-cursor-click = pointer
-cursor-scroll = ns-resize
-
-
-#───────────────────────────────────────────
-# ────────────── BOTTON BAR ─────────────────
-#───────────────────────────────────────────
-[bar/top4]
-;monitor = ${env:MONITOR:HDMI-1}
-width = 6%
-height = 32
-offset-x = 44.2%
-offset-y = 0.1%
-;radius = 6.0
-fixed-center = true
-
-Cores do painel
-background = #322F3A
-
-font-0 = misc:pixelsize=9;0
-font-1 = unifont:pixelsize=9;0
-font-2 = FontAwesome:pixelsize=9;0
-font-3 = featherpatched:pixelsize=9;0
-font-4 = Powerline Extra Symbols:pixelsize=9;0
-font-5 = Wuncon Siji:pixelsize=9;0:antialias=true;0
-font-6 = MaterialIcons:size=9;0
-
-modules-left =
-modules-center = volume space vol
-modules-right =
-
-cursor-click = pointer
-cursor-scroll = ns-resize
-
-
-#───────────────────────────────────────────
-# ────────────── BOTTON BAR ─────────────────
-#───────────────────────────────────────────
-[bar/top5]
-;monitor = ${env:MONITOR:HDMI-1}
-width = 3.4%
-height = 32
-offset-x = 50.3%
-offset-y = 0.1%
-;radius = 6.0
-fixed-center = false
-
-Cores do painel
-background = #322F3A
-
-font-0 = misc:pixelsize=9;0
-font-1 = unifont:pixelsize=9;0
-font-2 = FontAwesome:pixelsize=9;0
-font-3 = featherpatched:pixelsize=9;0
-font-4 = Powerline Extra Symbols:pixelsize=9;0
-font-5 = Wuncon Siji:pixelsize=9;0:antialias=true;0
-font-6 = MaterialIcons:size=9;0
-
-modules-left =
-modules-center = temperature
-modules-right =
-
-cursor-click = pointer
-cursor-scroll = ns-resize
-
-
-#───────────────────────────────────────────
-# ────────────── BOTTON BAR ─────────────────
-#───────────────────────────────────────────
-[bar/top6]
-;monitor = ${env:MONITOR:HDMI-1}
-width = 4.4%
-height = 32
-offset-x = 53.8%
-offset-y = 0.1%
-;radius = 6.0
-fixed-center = false
-
-Cores do painel
-background = #322F3A
-
-font-0 = misc:pixelsize=9;0
-font-1 = unifont:pixelsize=9;0
-font-2 = FontAwesome:pixelsize=9;0
-font-3 = featherpatched:pixelsize=9;0
-font-4 = Powerline Extra Symbols:pixelsize=9;0
-font-5 = Wuncon Siji:pixelsize=9;0:antialias=true;0
-font-6 = MaterialIcons:size=9;0
-
-modules-left =
-modules-center = cpu
-modules-right =
-
-cursor-click = pointer
-cursor-scroll = ns-resize
-
-
-#───────────────────────────────────────────
-# ────────────── BOTTON BAR ─────────────────
-#───────────────────────────────────────────
-[bar/top7]
-;monitor = ${env:MONITOR:HDMI-1}
-width = 4%
-height = 32
-offset-x = 58.3%
-offset-y = 0.1%
-;radius = 6.0
-fixed-center = false
-
-Cores do painel
-background = #322F3A
-
-font-0 = misc:pixelsize=9;0
-font-1 = unifont:pixelsize=9;0
-font-2 = FontAwesome:pixelsize=9;0
-font-3 = featherpatched:pixelsize=9;0
-font-4 = Powerline Extra Symbols:pixelsize=9;0
-font-5 = Wuncon Siji:pixelsize=9;0:antialias=true;0
-font-6 = MaterialIcons:size=9;0
-
-modules-left =
-modules-center = battery
-modules-right =
-
-cursor-click = pointer
-cursor-scroll = ns-resize
-
-#───────────────────────────────────────────
-# ────────────── BOTTON BAR ─────────────────
-#───────────────────────────────────────────
-[bar/top8]
-;monitor = ${env:MONITOR:HDMI-1}
-width = 6%
-height = 32
-offset-x = 62.4%
-offset-y = 0.1%
-;radius = 6.0
-fixed-center = false
-
-Cores do painel
-background = #322F3A
-
-font-0 = misc:pixelsize=9;0
-font-1 = unifont:pixelsize=9;0
-font-2 = FontAwesome:pixelsize=9;0
-font-3 = featherpatched:pixelsize=9;0
-font-4 = Powerline Extra Symbols:pixelsize=9;0
-font-5 = Wuncon Siji:pixelsize=9;0:antialias=true;0
-font-6 = MaterialIcons:size=9;0
-
-modules-left =
-modules-center = calendar
-modules-right =
-
-cursor-click = pointer
-cursor-scroll = ns-resize
-
-
-#───────────────────────────────────────────
-# ────────────── BOTTON BAR ─────────────────
-#───────────────────────────────────────────
-[bar/top9]
-;monitor = ${env:MONITOR:HDMI-1}
-width = 4%
-height = 32
-offset-x = 68.5%
-offset-y = 0.1%
-;radius = 6.0
-fixed-center = false
-
-Cores do painel
-background = #322F3A
-
-font-0 = misc:pixelsize=9;0
-font-1 = unifont:pixelsize=9;0
-font-2 = FontAwesome:pixelsize=9;0
-font-3 = featherpatched:pixelsize=9;0
-font-4 = Powerline Extra Symbols:pixelsize=9;0
-font-5 = Wuncon Siji:pixelsize=9;0:antialias=true;0
-font-6 = MaterialIcons:size=9;0
-
-modules-left =
-modules-center = coretemps
-modules-right =
-
-cursor-click = pointer
-cursor-scroll = ns-resize
 
 [module/coretemps]
 type = custom/script
@@ -326,33 +105,29 @@ exec-if = sensors
 exec = sensors|awk '/Core/{print substr($3, 2, length($3)-5)}'|awk '{if (match($0,/[0-9]+/,m)) print m[0]"°C"}'|tr '\n' ' '
 format =  <label>
 format-prefix = " "
+format-foreground = ${colors.white}
 format-prefix-foreground = ${colors.primary}
 
 
-#───────────────────────────────────────────
-# ─────────────── MODULES ──────────────────
-#───────────────────────────────────────────
+;==========================================================
+;                      DECORAÇÕES                      ====      
+;==========================================================
+
 [module/arrow1]
 type = custom/text
-content = ""
+content = "   "
 content-foreground = ${colors.primary}
 content-background = ${colors.background}
 
 [module/arrow2]
 type = custom/text
-content = "     "
+content = "  "
 content-foreground = ${colors.primary}
 content-background = ${colors.background}
 
 [module/space]
 type = custom/text
-content = "   "
-content-foreground = #322F3A
-content-background = #322F3A
-
-[module/space1]
-type = custom/text
-content = " "
+content = "  "
 content-foreground = ${colors.background}
 content-background = ${colors.background}
 
@@ -363,73 +138,75 @@ content-background = ${colors.primary}
 click-left = ~/.config/polybar/scripts/menu.sh options
 
 
-
 #───────────────────────────────────────────
 # ────────────────── CPU ────────────────────
 #───────────────────────────────────────────
-[module/cpu]
-type = internal/cpu
+#[module/cpu]
+#type = internal/cpu
 interval = 0.5
 format = <label> <ramp-coreload>
-label = CPU
+label = 
+label-foreground = ${colors.primary}
 
 ramp-coreload-0 = ▁
 ramp-coreload-0-font = 2
-ramp-coreload-0-foreground = ${colors.primary}
+ramp-coreload-0-foreground = ${colors.white}
 ramp-coreload-1 = ▂
 ramp-coreload-1-font = 2
-ramp-coreload-1-foreground = ${colors.primary}
+ramp-coreload-1-foreground = ${colors.white}
 ramp-coreload-2 = ▃
 ramp-coreload-2-font = 2
-ramp-coreload-2-foreground = ${colors.primary}
+ramp-coreload-2-foreground = ${colors.white}
 ramp-coreload-3 = ▄
 ramp-coreload-3-font = 2
-ramp-coreload-3-foreground = ${colors.primary}
+ramp-coreload-3-foreground = ${colors.white}
 ramp-coreload-4 = ▅
 ramp-coreload-4-font = 2
-ramp-coreload-4-foreground = ${colors.primary}
+ramp-coreload-4-foreground = ${colors.white}
 ramp-coreload-5 = ▆
 ramp-coreload-5-font = 2
-ramp-coreload-5-foreground = ${colors.primary}
+ramp-coreload-5-foreground = ${colors.white}
 ramp-coreload-6 = ▇
 ramp-coreload-6-font = 2
-ramp-coreload-6-foreground = ${colors.primary}
+ramp-coreload-6-foreground = ${colors.white}
 ramp-coreload-7 = █
 ramp-coreload-7-font = 2
-ramp-coreload-7-foreground = ${colors.primary}
+ramp-coreload-7-foreground = ${colors.white}
 
+; ---------------------------------------------------------------------------- ;;
+; MEMORY
+; ---------------------------------------------------------------------------- ;;
 
-
-#───────────────────────────────────────────
-# ──────────────── MEMORY ──────────────────
-#───────────────────────────────────────────
 [module/memory]
 type = internal/memory
 format = <label> <bar-used>
-label = RAM
+label = 
+label-foreground = ${colors.primary}
 
-bar-used-width = 20
-bar-used-foreground-0 = #ff5555
-bar-used-foreground-1 = #ff5555
-bar-used-foreground-2 = #ff5555
-bar-used-foreground-3 = #c62828
+bar-used-width = 10
+bar-used-foreground-0 = ${colors.white}
+bar-used-foreground-1 = ${colors.white}
+bar-used-foreground-2 = ${colors.white}
+bar-used-foreground-3 = ${colors.white}
 
-bar-used-indicator = ⭓
-bar-used-indicator-font = 1
-bar-used-indicator-foreground = #CCD6DD
+bar-used-indicator = 
+bar-used-indicator-font = 6
+bar-used-indicator-foreground = #ff
 bar-used-fill = ━
 bar-used-fill-font = 6
 bar-used-empty = ─
 bar-used-empty-font = 6
 bar-used-empty-foreground = #444444
 
-
+; ---------------------------------------------------------------------------- ;;
+; VOLUME
+; ---------------------------------------------------------------------------- ;;
 
 #───────────────────────────────────────────
 # ──────────────── VOLUME ───────────────────
 #───────────────────────────────────────────
 [module/volume]
-type = internal/volume
+type = internal/alsa
 
 format-volume = <ramp-volume> <bar-volume>
 master-soundcard = default
@@ -472,51 +249,53 @@ bar-volume-empty = ─
 bar-volume-empty-font = 2
 bar-volume-empty-foreground = ${colors.foreground}
 
+; ---------------------------------------------------------------------------- ;;
+; XBACKLIGHT
+; ---------------------------------------------------------------------------- ;;
 
-
-#───────────────────────────────────────────
-# ────────────── XBACKLIGHT ─────────────────
-#───────────────────────────────────────────
 [module/xbacklight]
 type = internal/xbacklight
 
 format = <label> <bar>
 label = 
-label-foreground = ${colors.redbar}
+label-foreground = ${colors.primary}
 
-bar-width = 10
-bar-indicator = ⭓
-bar-indicator-foreground = ${colors.foreground}
+bar-width = 5
+bar-indicator = 
+bar-indicator-foreground = ${colors.white}
 bar-indicator-font = 2
 bar-fill = ─
 bar-fill-font = 2
-bar-fill-foreground = ${colors.redbar}
+bar-fill-foreground = ${colors.white}
 bar-empty = ─
 bar-empty-font = 2
-bar-empty-foreground = ${colors.foreground}
+bar-empty-foreground = ${colors.white}
 
 [module/backlight-acpi]
 inherit = module/xbacklight
 type = internal/backlight
 card = intel_backlight
 
-#───────────────────────────────────────────
-# ─────────────── WALLPAPER ─────────────────
-#───────────────────────────────────────────
+; ---------------------------------------------------------------------------- ;;
+; WALLPAPER
+; ---------------------------------------------------------------------------- ;;
+
 [module/wallpaper]
 type = custom/text
-content =  
-click-left = ~/.config/polybar/scripts/wallpaper.sh x &
-;click-middle = ~/.config/polybar/scripts/wallpaper.sh dd &
-click-middle = ~/.config/polybar/scripts/wallpaper.sh rr &
+content =  
+content-foreground = ${colors.primary}
+;click-left = ~/.config/polybar/scripts/wallpaper.sh x &
+click-left = ~/.config/polybar/scripts/wallpaper.sh dd &
+;click-middle = ~/.config/polybar/scripts/wallpaper.sh rr &
 click-right = ~/.config/polybar/scripts/wallpaper.sh d &
 scroll-up = ~/.config/polybar/scripts/wallpaper.sh p &
 scroll-down = ~/.config/polybar/scripts/wallpaper.sh a &
+click-middle = scrot %Y-%m-%d-%T.png -e 'mv $f ~/Imagens/Prints/' | notify-send -i ~/.local/share/icons/customer-service.png -u normal -t 9000 'Screenshot taken and saved to ~/Imagens/Prints'
 
+; ---------------------------------------------------------------------------- ;;
+; MOONPHASE
+; ---------------------------------------------------------------------------- ;;
 
-#───────────────────────────────────────────
-# ────────────── MOONPHASE ─────────────────
-#───────────────────────────────────────────
 [module/moonphase]
 type = custom/script
 interval = 60.0
@@ -528,11 +307,10 @@ format = <label>
 format-foreground = ${colors.foreground}
 ;format-underline = ${colors.primary}
 
+; ---------------------------------------------------------------------------- ;;
+; ROFI
+; ---------------------------------------------------------------------------- ;;
 
-
-#───────────────────────────────────────────
-# ────────────────── ROFI ────────────────────
-#───────────────────────────────────────────
 [module/rofi]
 type = custom/text
 content = ""
@@ -544,11 +322,10 @@ click-left = rofi -show drun -config ~/.config/rofi/relaxDrun.rasi &
 click-middle = rofi -show run -config ~/.config/rofi/relax.rasi &
 click-right = rofi -show window -config ~/.config/rofi/relaxWindow.rasi &
 
+; ---------------------------------------------------------------------------- ;;
+; DZEN2
+; ---------------------------------------------------------------------------- ;;
 
-
-#───────────────────────────────────────────
-# ─────────────── DZEN INFO ─────────────────
-#───────────────────────────────────────────
 [module/dzen2]
 type = custom/text
 content = ""
@@ -556,25 +333,18 @@ content-padding = 2
 content-foreground = ${colors.primary}
 click-left =sh ~/Modelos/sysinfo.sh
 
-
-
-#───────────────────────────────────────────
-# ─────────────── CALENDAR ──────────────────
-#───────────────────────────────────────────
 [module/calendar]
 type = custom/script
 interval = 1
 exec =  date "+%a %H:%M:%S  "
 format =  <label>
-format-prefix = "  "
+format-prefix = "  "
 format-foreground = ${colors.white}
-format-background = ${colors.background}
+format-background = ${colors.primary}
 format-padding = 0.5
 label-padding = 0
 ;format-underline = ${colors.red}
-click-left = ~/.config/polybar/scripts/calendar2.sh &
-
-
+click-left =  ~/.config/polybar/calendar2.sh &
 
 #───────────────────────────────────────────
 # ───────────────── DATE ────────────────────
@@ -594,8 +364,6 @@ format-prefix-foreground = ${colors.foreground-alt}
 ;format-underline = #0a6cf5
 
 label = %{F#665c54}────[%{F-} %{F#83a598}%date%%{F-}%{F#b16286} %time%%{F-} %{F#665c54}]────%{F-}
-
-
 
 #───────────────────────────────────────────
 # ─────────────── BACKLIGHT ─────────────────
@@ -619,8 +387,6 @@ bar-empty = ─
 bar-empty-font = 2
 bar-empty-foreground = ${colors.foreground}
 
-
-
 #───────────────────────────────────────────
 # ────────────────── VOL ────────────────────
 #───────────────────────────────────────────
@@ -634,19 +400,16 @@ format-prefix =
 format-prefix-foreground = ${colors.primary}
 
 
-
 #───────────────────────────────────────────
-# ─────────────── EVERNOTE ──────────────────
+# ─────────────── CPU ──────────────────
 #───────────────────────────────────────────
-[module/ever]
-type = custom/text
-content =  
-content-padding = 3
-content-background = #322F3A
-content-foreground = ${colors.primary}
-content-underline = ${colors.primary}
-click-left = google-chrome-stable https://www.evernote.com/Home.action\?securityRegCode\=chromestore
-
+[module/cpu]
+type = custom/script
+interval = 1
+exec =  ~/.config/polybar/cpu
+format =  <label>
+format-prefix = " "
+format-prefix-foreground = ${colors.primary}
 
 
 #───────────────────────────────────────────
@@ -683,36 +446,36 @@ click-left =
 [module/bspwm]
 type = internal/bspwm
 format = <label-state> <label-mode>
-reverse-scroll = false
+reverse-scroll = true
 
-ws-icon-0 = user;
-ws-icon-1 = term;
-ws-icon-2 = web;
-ws-icon-3 = arquivos;
-ws-icon-4 = code;
-ws-icon-5 = chat;
+ws-icon-0 = user;
+ws-icon-1 = os;
+ws-icon-2 = web;
+ws-icon-3 = arquivos;
+ws-icon-4 = code;
+ws-icon-5 = chat;
 ws-icon-default = 
 
 label-focused = %icon%
 label-focused-background = ${colors.background}
 label-focused-foreground =  ${colors.primary}
-label-focused-underline = ${colors.primary}
-label-focused-padding = 2
+#label-focused-underline = ${colors.foreground}
+label-focused-padding = 3
 
 label-occupied = %icon%
-label-occupied-padding = 2
-label-occupied-foreground = ${colors.primary}
+label-occupied-padding = 3
+label-occupied-foreground = ${colors.secondary}
 
 label-urgent = %icon%
 label-urgent-background = #214754
-label-urgent-padding = 2
+label-urgent-padding = 3
 
 label-empty = %icon%
-label-empty-foreground = #6D8B94
-label-empty-padding = 2
+label-empty-foreground = ${colors.alert}
+label-empty-padding = 3
 
 label-monocle = 
-label-monocle-padding = 2
+label-monocle-padding = 3 
 label-monocle-background = ${colors.primary}
 label-monocle-foreground =  ${colors.primary}
 
@@ -728,16 +491,41 @@ label-monocle-foreground =  ${colors.primary}
 #───────────────────────────────────────────
 [module/mpd]
 type = internal/mpd
+format-online = <icon-prev> <icon-stop> <toggle> <icon-next> <icon-repeat> <icon-random> <bar-progress>  <label-song> %{B-}
+format-stopped = <icon-prev>   <toggle>   <icon-next>   0:00/0:00   %{B-}
+format-online-spacing = 0
+format-prefix = " "
+format-online-padding = 3
+format-offline = <label-offline>
+format-offline-foreground = #777
+label-offline = mpd is off
+label-song-maxlen = 40
+label-song-ellipsis = true
+label-time-foreground =  ${colors.primary}
 
-; Host where mpd is running (either ip or domain name)
-; Can also be the full path to a unix socket where mpd is running.
-host = 127.0.0.1
-port = 6600
-password = mysecretpassword
+icon-prev = 
+icon-stop = 
+icon-play = 
+icon-pause = 
+icon-next = 
 
-; Seconds to sleep between progressbar/song timer sync
-; Default: 1
-interval = 2
+icon-random = 
+icon-repeat = 
+
+toggle-on-foreground = ${colors.foreground-alt}
+toggle-off-foreground = #777
+
+bar-progress-width = 15
+bar-progress-indicator = 
+bar-progress-indicator-foreground = ${colors.primary}
+bar-progress-indicator-font = 3
+bar-progress-fill = ─
+bar-progress-fill-foreground = ${colors.primary}
+bar-progress-fill-font = 3
+bar-progress-empty = ─
+bar-progress-empty-foreground = ${colors.primary}
+bar-progress-empty-font = 3
+bar-progress-format = %{A4:mpdseek+2: A5:mpdseek-2:}%fill%%indicator%%empty%%{A A}
 
 
 
@@ -789,6 +577,9 @@ format-full = <ramp-capacity><label-full>
 label-charging = %percentage%%
 label-discharging = %percentage%%
 label-full = %percentage%%
+label-full-foreground = ${colors.white}
+label-discharging-foreground = ${colors.white}
+label-charging-foreground = ${colors.white}
 format-charging-padding = 2
 format-discharging-padding = 2
 format-ful-padding = 2
@@ -832,13 +623,14 @@ format = <ramp> <label>
 format-warn = <ramp> <label-warn>
 ;format-warn-underline = ${colors.primary}
 
-label = %temperature%
-label-warn = %temperature%
+label = %temperature-c%
+label-foreground = ${colors.white}
+label-warn = %temperature-c%
 label-warn-foreground = ${colors.primary}
 
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
 ramp-foreground = ${colors.primary}
 
 
@@ -869,7 +661,7 @@ format-spacing = 1
 format-background = ${colors.primary}
 content-background = ${colors.primary}
 expand-right= true
-label-open = "  b301 "
+label-open = "   Ghost "
 label-open-foreground = ${colors.white}
 content-open-foreground = ${colors.primary}
 label-open-background = ${colors.primary}
