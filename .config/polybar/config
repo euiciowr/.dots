@@ -9,8 +9,8 @@ foreground = #B9C2C2
 foreground-alt = #665c54
 primary = #C62168
 ;#BD2B55
-secondary = #adbbc3
-alert = #5b666c
+secondary = #74838b
+alert = #464f53
 white = #FFFFFF
 black = #726963
 branco = #FFFFFF
@@ -309,12 +309,12 @@ type = internal/bspwm
 format = <label-state> <label-mode>
 reverse-scroll = true
 
-ws-icon-0 = user;
-ws-icon-1 = os;
-ws-icon-2 = web;
-ws-icon-3 = arquivos;
-ws-icon-4 = code;
-ws-icon-5 = chat;
+ws-icon-0 = user;
+ws-icon-1 = os;
+ws-icon-2 = web;
+ws-icon-3 = arquivos;
+ws-icon-4 = code;
+ws-icon-5 = chat;
 ws-icon-default = 
 
 label-focused = %icon%
@@ -485,9 +485,9 @@ label-foreground = ${colors.white}
 label-warn = %temperature-c%
 label-warn-foreground = ${colors.primary}
 
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
 ramp-foreground = ${colors.primary}
 
 

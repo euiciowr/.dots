@@ -1,5 +1,5 @@
 #──────────────────────────────────
-# ───────────── @euiciowr ───────────
+# ───────────── @w1trtc ────────────
 #──────────────────────────────────
 
 
@@ -70,7 +70,7 @@ super + w
 
 # settings dmenu rofi
 super + c
-	exec $HOME/.config/polybar/scripts/configs
+	exec $HOME/.config/polybar/configs
 
 super + d
 	rofi -show drun -sidebar-mode -config $HOME/.config/rofi/relaxrun.rasi
