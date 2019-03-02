@@ -1,0 +1,27 @@
+# Linguagem orientada a objetos
+
+<[--------------------------------------------------------------------]>
+
+# As string são imutáveis
+# As Listas são mutáveis []
+b = ['1, 2, 3, 4'] # Lista única, isto é, apenas mas tring
+c = ['1', '2', '3', '4'] # Lista com 4 elementos - 3 blocos
+c[2] = 5
+print(b)
+
+del c[0]
+print(b)
+
+<[--------------------------------------------------------------------]>
+
+// Funções Built-in de Strings
+# As estruturas de dados possuem atributos (propriedades)
+    módulo.atributo
+    módulo.método()
+    módulo.método(parâmetros)
+    # Método é uma função
+    # Parâmetro são argumentos extras que pode-se passar para o método
+    
+
+<[--------------------------------------------------------------------]>
+    

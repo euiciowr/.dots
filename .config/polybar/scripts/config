@@ -1,0 +1,768 @@
+;;; ------------------------------------------------------------------------ ;;;
+;    	 													                   ;
+;                              top bar                                         ;
+;     															               ;
+;;; ------------------------------------------------------------------------ ;;;
+;
+;
+;	| @ueiciowr | euiciiowr@outlook.com | Mauricio |
+;
+
+[colors]
+;transparente = #A6000000
+background = #30343f
+background-alt = #c41c22
+foreground = #FFFFFF
+foreground-alt = #c41c22
+primary = #1a1a1a
+secondary = #e60053
+alert = #bd2c40
+red = #c41c22
+white = #FFFFFF
+
+;;; ------------------------------------------------------------------------ ;;;
+;;;									TOP 									 ;;;
+;;; ------------------------------------------------------------------------ ;;;
+
+[bar/top]
+;monitor = ${env:MONITOR:HDMI-1}
+width = 100%
+height = 21
+offset-x = 0%
+offset-y = 0%
+radius = 0.0
+fixed-center = true
+separator = " "
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 1
+line-color = ${colors.background}
+
+border-size = 0
+border-color = #00000000
+
+padding-left = 0
+padding-right = 2
+
+module-margin-left = 1
+module-margin-right = 1
+
+font-0 = fixed:pixelsize=10;1:fontformat=truetype:size=8:antialias=true;0
+font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
+font-2 = Wuncon Siji:pixelsize=10;1:antialias=true;0
+font-3 = FontAwesome:pixelsize=9;0:antialias=true;0
+font-4 = artwiz snap:size=10;1
+font-5 = Exo 2:pixelsize=8;1
+
+modules-left = menu-apps moonphase RightArrow1
+modules-center = calendar
+modules-right = updates arrow1 temperature arrow2 arrow3 backlight arrow2 vol arrow3 memoryf arrow2 arrow3 wlan battery
+
+tray-position = right
+tray-padding = 11
+tray-transparent = true
+tray-background = #1a1a1a
+
+wm-restack = bspwm
+locale     = pt_BR.UTF-8
+;wm-restack = i3
+
+;override-redirect = true
+
+scroll-up = bspwm-desknext
+scroll-down = bspwm-deskprev
+
+;scroll-up = i3wm-wsnext
+;scroll-down = i3wm-wsprev
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+;;; ------------------------------------------------------------------------ ;;;
+;;;									botton 									 ;;;
+;;; ------------------------------------------------------------------------ ;;;
+
+[bar/botton]
+;monitor = ${env:MONITOR:HDMI-1}
+width = 100%
+height = 36
+offset-x = 0%
+offset-y = 0%
+radius = 0.0
+fixed-center = true
+separator = " "
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 2
+line-color = #f00
+
+border-size = 0
+border-color = #00000000
+
+padding-left = 0
+padding-right = 4
+
+module-margin-left = 1
+module-margin-right = 1
+
+font-0 = fixed:pixelsize=10;1:fontformat=truetype:size=8:antialias=true;0
+font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
+font-2 = Wuncon Siji:pixelsize=10;1:antialias=true;0
+font-3 = FontAwesome:pixelsize=9;0:antialias=true;0
+font-4 = artwiz snap:size=10;1
+font-5 = Exo 2:pixelsize=8;1
+
+modules-left = mpd wallpaper rofi
+modules-center = bspwm
+modules-right = volume xbacklight memory
+
+bottom = true
+tray-padding = 1
+tray-transparent = true
+tray-background = #0063ff
+
+wm-restack = bspwm
+;wm-restack = i3
+
+;override-redirect = true
+
+scroll-up = bspwm-desknext
+scroll-down = bspwm-deskprev
+
+;scroll-up = i3wm-wsnext
+;scroll-down = i3wm-wsprev
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+;;; ------------------------------------------------------------------------ ;;;
+;    	 													                   ;
+;                   MODULES settings                                           ;
+;     															               ;
+;;; ------------------------------------------------------------------------ ;;;
+;==========================================================
+;                      DECORAÇÕES                      ====   =======  =======  =======  =======     
+;==========================================================
+
+[module/pipe]
+type = custom/text
+content = "|"
+content-foreground = ${colors.darkgrey}
+content-background = ${colors.xcolor0}
+content-padding = 1
+
+[module/LeftStripe]
+type = custom/text
+content = ""
+content-foreground = ${colors.xcolor0}
+content-background = ${colors.xcolor8}
+
+[module/arrow1]
+type = custom/text
+content = ""
+content-foreground = ${colors.xcolor8}
+content-background = ${colors.xcolor0}
+
+[module/arrow2]
+type = custom/text
+content = " "
+content-foreground = ${colors.xcolor7}
+content-background = ${colors.xcolor8}
+
+[module/arrow3]
+type = custom/text
+content = " "
+content-foreground = ${colors.xcolor8}
+content-background = ${colors.xcolor7}
+
+[module/RightStripe]
+type = custom/text
+content = ""
+content-foreground = ${colors.xcolor0}
+content-background = ${colors.xcolor8}
+
+[module/RightArrow1]
+type = custom/text
+content = ""
+content-foreground = ${colors.xcolor8}
+content-background = ${colors.xcolor0}
+
+[module/MiddleArrowLeft]
+type = custom/text
+content = "◥"
+content-foreground = ${colors.xcolor8}
+content-background = ${colors.xcolor0}
+;◥ ◤◢ ◣
+[module/MiddleArrowRight]
+type = custom/text
+content = "◢"
+content-foreground = ${colors.xcolor0}
+content-background = ${colors.xcolor8}
+
+[module/updates]
+type = custom/script
+exec = ~/.config/polybar/scripts/updatearch.sh
+interval = 100
+format-underline = ${colors.red}
+
+
+; ---------------------------------------------------------------------------- ;;
+; MEMORY
+; ---------------------------------------------------------------------------- ;;
+
+[module/memory]
+;https://github.com/jaagr/polybar/wiki/Module:-memory
+type = internal/memory
+interval = 1
+; Available tokens:
+;   %percentage_used% (default)
+;   %percentage_free%
+;   %gb_used%
+;   %gb_free%
+;   %gb_total%
+;   %mb_used%
+;   %mb_free%
+;   %mb_total%
+label = %gb_used%
+bar-used-foreground-0 = ${colors.red}
+bar-used-foreground-1 = ${colors.red}
+bar-used-foreground-2 = ${colors.red}
+bar-used-foreground-3 = ${colors.red}
+bar-used-foreground-4 = ${colors.red}
+bar-used-foreground-5 = ${colors.red}
+bar-used-foreground-6 = ${colors.red}
+bar-used-indicator = |
+bar-used-indicator-font = 0
+bar-used-gradient = true
+bar-used-width = 20
+bar-used-indicator-foreground = #ff
+bar-used-fill = |
+bar-used-fill-font = 2
+bar-used-empty = -
+bar-used-empty-font = 2
+bar-used-empty-foreground = ${colors.white}
+
+format = <label> <bar-used>
+format-prefix = " RAM "
+format-prefix-foreground = ${colors.white}
+#format-underline = #00cc00
+
+; ---------------------------------------------------------------------------- ;;
+; VOLUME
+; ---------------------------------------------------------------------------- ;;
+
+[module/volume]
+type = internal/volume
+
+format-volume = <ramp-volume> <bar-volume>
+master-soundcard = default
+speaker-soundcard = default
+headphone-soundcard = default
+master-mixer = Master
+speaker-mixer = Speaker
+headphone-mixer = Headphone
+headphone-id = 9
+mapped = true
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+format-muted-prefix = " "
+format-muted-foreground = ${colors.red}
+label-muted = sound muted
+
+ramp-headphones-0 = 
+ramp-headphones-1 = 
+
+bar-volume-width = 10
+bar-volume-foreground-0 = ${colors.red}
+bar-volume-foreground-1 = ${colors.red}
+bar-volume-foreground-2 = ${colors.red}
+bar-volume-foreground-3 = ${colors.red}
+bar-volume-foreground-4 = ${colors.red}
+bar-volume-foreground-5 = ${colors.red}
+bar-volume-foreground-6 = ${colors.red}
+bar-volume-gradient = false
+bar-volume-indicator = |
+bar-volume-indicator-font = 2
+bar-volume-fill = ─
+bar-volume-fill-font = 2
+bar-volume-empty = ─
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = ${colors.white}
+
+; ---------------------------------------------------------------------------- ;;
+; XBACKLIGHT
+; ---------------------------------------------------------------------------- ;;
+
+[module/xbacklight]
+type = internal/xbacklight
+
+format = <label> <bar>
+label = 
+
+bar-width = 7
+bar-indicator = |
+bar-indicator-foreground = #ff
+bar-indicator-font = 2
+bar-fill = ─
+bar-fill-font = 2
+bar-fill-foreground = ${colors.red}
+bar-empty = ─
+bar-empty-font = 2
+bar-empty-foreground = ${colors.red}
+
+[module/backlight-acpi]
+inherit = module/xbacklight
+type = internal/backlight
+card = intel_backlight
+
+; ---------------------------------------------------------------------------- ;;
+; WALLPAPER
+; ---------------------------------------------------------------------------- ;;
+
+[module/wallpaper]
+type = custom/text
+content =  Paper
+content-foreground = ${colors.white}
+;content-underline = ${colors.white}
+click-left = ~/.config/polybar/scripts/wallpaper.sh p | notify-send -i ~/.local/share/icons/customer-service.png -u normal -t 1500 'Set left Wallpaper'
+click-right = ~/.config/polybar/scripts/wallpaper.sh a | notify-send -i ~/.local/share/icons/customer-service.png -u normal -t 1500 'Set right Wallpaper'
+click-middle = scrot %Y-%m-%d-%T.png -e 'mv $f ~/Imagens/Prints/' | notify-send -i ~/.local/share/icons/customer-service.png -u normal -t 9000 'Screenshot taken and saved to ~/Imagens/Prints'
+
+; ---------------------------------------------------------------------------- ;;
+; MOONPHASE
+; ---------------------------------------------------------------------------- ;;
+
+[module/moonphase]
+type = custom/script
+interval = 60.0
+label-font = 3
+exec =  ~/.config/polybar/scripts/moonphase.py
+click-left = notify-send -i ~/.config/dunst/icons/moon.svg "Fases Lunares" "$(python2 ~/.config/polybar/scripts/moonphase.py desc)" &
+label = %output%
+format = <label>
+format-foreground = ${colors.white}
+format-underline = ${colors.red}
+
+; ---------------------------------------------------------------------------- ;;
+; ROFI
+; ---------------------------------------------------------------------------- ;;
+
+[module/rofi]
+type = custom/text
+content = " Menu"
+content-padding = 1
+;content-background = ${colors.red}
+content-foreground = ${colors.white}
+;content-underline = ${colors.white}
+click-left = rofi -show drun -config ~/.config/rofi/relaxDrun.rasi &
+click-middle = rofi -show run -config ~/.config/rofi/relax.rasi &
+click-right = rofi -show window -config ~/.config/rofi/relaxWindow.rasi &
+
+; ---------------------------------------------------------------------------- ;;
+; DZEN2
+; ---------------------------------------------------------------------------- ;;
+
+[module/dzen2]
+type = custom/text
+content = ""
+content-padding = 2
+content-foreground = ${colors.red}
+click-left =sh ~/Modelos/sysinfo.sh
+
+; ---------------------------------------------------------------------------- ;;
+; CALENDAR
+; ---------------------------------------------------------------------------- ;;
+
+[module/calendar]
+type = custom/script
+interval = 1
+exec =  date "+%a %H:%M:%S"
+format =  <label>
+format-prefix = " "
+format-prefix-foreground = ${colors.red}
+format-padding = 0.5
+label-padding = 0
+format-underline = ${colors.red}
+click-left = ~/.config/polybar/scripts/calendar2.sh &
+
+; ---------------------------------------------------------------------------- ;;
+; BACKLIGHT
+; ---------------------------------------------------------------------------- ;;
+
+[module/backlight]
+type = internal/xbacklight
+; To list available cards use: $ ls -1 /sys/class/backlight/
+;card = intel_backlight
+
+format = <ramp> <label>
+;    
+label = %percentage%%
+
+ramp-0 = 🌕
+ramp-1 = 🌔
+ramp-2 = 🌓
+ramp-3 = 🌒
+ramp-4 = 🌑
+ramp-0-foreground = ${colors.red}
+ramp-1-foreground = ${colors.red}
+ramp-2-foreground = ${colors.red}
+ramp-3-foreground = ${colors.red}
+ramp-4-foreground = ${colors.red}
+format-underline = ${colors.red}
+
+; ---------------------------------------------------------------------------- ;;
+; VOLUME
+; ---------------------------------------------------------------------------- ;;
+
+[module/vol]
+type = custom/script
+exec = pactl list sinks | awk '/Volume/{print $12}'
+interval = 1
+format =  <label>
+format-prefix = " "
+format-underline = ${colors.red}
+format-prefix-foreground = ${colors.red}
+
+
+; ---------------------------------------------------------------------------- ;;
+; UPDATES
+; ---------------------------------------------------------------------------- ;;
+
+;[module/update]
+;type = custom/script
+;interval = 10
+;format = <label>
+;label = "%output:0:30%"
+;exec = /home/ueiciowr/.config/polybar/scripts/update.sh
+;format-underline = ${colors.red}
+
+; ---------------------------------------------------------------------------- ;;
+; MEMORY
+; ---------------------------------------------------------------------------- ;;
+
+[module/memoryf]
+type = custom/script
+exec = free -m |awk '/^Mem/ {printf("%u%%",100*$3/$2);}'
+interval = 2
+format =  <label>
+format-prefix = " "
+format-prefix-foreground = ${colors.red}
+format-underline = ${colors.red}
+click-left = 
+
+; ---------------------------------------------------------------------------- ;;
+; I3
+; ---------------------------------------------------------------------------- ;;
+
+[module/bspwm]
+type = internal/bspwm
+format = <label-state> <label-mode>
+reverse-scroll = true
+
+ws-icon-0 = user;
+ws-icon-1 = term;
+ws-icon-2 = web;
+ws-icon-3 = arquivos;
+ws-icon-4 = code;
+ws-icon-5 = media;
+ws-icon-6 = lab;
+ws-icon-7 = chat;
+ws-icon-default = 
+
+label-focused = %icon%
+label-focused-background = ${colors.white}
+label-focused-foreground =  ${colors.red}
+label-focused-underline = ${colors.red}
+label-focused-padding = 2
+
+label-occupied = %icon%
+label-occupied-padding = 2
+label-occupied-foreground = ${colors.white}
+
+label-urgent = %icon%
+label-urgent-background = #bd2c40
+label-urgent-padding = 2
+
+label-empty = %icon%
+label-empty-foreground = #898E8C
+label-empty-padding = 2
+
+label-monocle = 
+label-monocle-padding = 2
+label-monocle-background = #171717
+label-monocle-foreground =  ${colors.secondary}
+
+label-floating = 
+label-floating-padding = 2
+label-floating-background = ${colors.white}
+label-floating-foreground =  ${colors.secondary}
+
+; ---------------------------------------------------------------------------- ;;
+; MPD
+; ---------------------------------------------------------------------------- ;;
+
+[module/mpd]
+type = internal/mpd
+format-online = <icon-prev> <icon-stop> <toggle> <icon-next> <icon-repeat> <icon-random> <bar-progress>  <label-song> %{B-}
+format-stopped = <icon-prev>   <toggle>   <icon-next>   0:00/0:00   %{B-}
+format-online-spacing = 0
+format-prefix = " "
+format-online-padding = 3
+format-offline = <label-offline>
+format-offline-foreground = #777
+label-offline = mpd is off
+label-song-maxlen = 25
+label-song-ellipsis = true
+label-time-foreground =  ${colors.secondary}
+
+icon-prev = 
+icon-stop = 
+icon-play = 
+icon-pause = 
+icon-next = 
+
+icon-random = 
+icon-repeat = 
+icon-repeatone = 🔂
+
+toggle-on-foreground = ${colors.red}
+toggle-off-foreground = #66757F
+
+bar-progress-width = 17
+bar-progress-indicator = 
+bar-progress-indicator-foreground = ${colors.secondary}
+bar-progress-indicator-font = 1
+bar-progress-fill = ─
+bar-progress-fill-foreground = ${colors.red}
+bar-progress-fill-font = 1
+bar-progress-empty = ─
+bar-progress-empty-foreground = ${colors.red}
+bar-progress-empty-font = 1
+bar-progress-format = %{A4:mpdseek+2: A5:mpdseek-2:}%fill%%indicator%%empty%%{A A}
+
+; ---------------------------------------------------------------------------- ;;
+; XKEYBOARD
+; ---------------------------------------------------------------------------- ;;
+
+[module/xkeyboard]
+type = internal/xkeyboard
+;blacklist-0 = num lock
+format = <label-layout> <label-indicator>
+format-spacing = 0
+
+format-prefix = "  "
+format-prefix-foreground = ${colors.red}
+;format-prefix-underline = ${colors.secondary}
+
+label-layout = %layout%
+label-layout-underline = ${colors.secondary}
+
+label-indicator-padding = 2
+label-indicator-margin = 1
+label-indicator-background = ${colors.red}
+;label-indicator-underline = ${colors.secondary}
+
+; ---------------------------------------------------------------------------- ;;
+; WLAN
+; ---------------------------------------------------------------------------- ;;
+
+[module/wlan]
+type = internal/network
+interface = wlp2s0
+interval = 3.0
+
+format-connected = <ramp-signal> <label-connected>
+format-connected-underline = ${colors.red}
+label-connected = %essid% 
+
+;format-disconnected = OFFLINE
+format-disconnected = <label-disconnected>
+format-disconnected-underline = ${colors.red}
+label-disconnected = %ifname% disconnected
+label-disconnected-foreground = ${colors.red}
+
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
+ramp-signal-0-foreground = ${colors.red}
+ramp-signal-1-foreground = ${colors.red}
+ramp-signal-2-foreground = ${colors.red}
+ramp-signal-3-foreground = ${colors.red}
+ramp-signal-4-foreground = ${colors.red}
+
+
+
+; ---------------------------------------------------------------------------- ;;
+; DATE
+; ---------------------------------------------------------------------------- ;;
+
+[module/date]
+type = internal/date
+interval = 5
+
+date =
+date-alt = " %Y-%m-%d"
+
+time = %H:%M
+time-alt = %H:%M:%S
+
+format-prefix = 
+format-prefix-foreground = ${colors.red}
+format-underline = ${colors.red}
+
+label = %date% %time%
+
+
+
+; ---------------------------------------------------------------------------- ;;
+; BATTERY
+; ---------------------------------------------------------------------------- ;;
+
+[module/battery]
+type = internal/battery
+full-at = 99
+battery = BAT0
+adapter = ADP1
+poll-interval = 1
+format-charging = <animation-charging><label-charging>
+format-charging-underline = ${colors.red}
+format-discharging = <ramp-capacity><label-discharging>
+format-discharging-underline = ${colors.red}
+format-full = <ramp-capacity><label-full>
+label-charging = %percentage%%
+label-discharging = %percentage%%
+label-full = %percentage%%
+format-charging-padding = 2
+format-discharging-padding = 2
+format-ful-padding = 2
+
+ramp-capacity-0 = "  "
+ramp-capacity-1 = "  "
+ramp-capacity-2 = "  "
+ramp-capacity-3 = "  "
+ramp-capacity-4 = "  "
+
+animation-charging-0 = " "
+animation-charging-1 = " "
+animation-charging-2 = " "
+animation-charging-3 = " "
+animation-charging-4 = " "
+animation-charging-framerate = 750
+
+ramp-capacity-0-foreground = ${colors.red}
+ramp-capacity-1-foreground = ${colors.red}
+ramp-capacity-2-foreground = ${colors.red}
+ramp-capacity-3-foreground = ${colors.red}
+ramp-capacity-4-foreground = ${colors.red}
+animation-charging-0-foreground = ${colors.red}
+animation-charging-1-foreground = ${colors.red}
+animation-charging-2-foreground = ${colors.red}
+animation-charging-3-foreground = ${colors.red}
+animation-charging-4-foreground = ${colors.red}
+
+; ---------------------------------------------------------------------------- ;;
+; TEMPERATURE
+; ---------------------------------------------------------------------------- ;;
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 60
+
+format = <ramp> <label>
+format-underline = #f50a4d
+format-warn = <ramp> <label-warn>
+format-warn-underline = ${colors.red}
+
+label = %temperature%
+label-warn = %temperature%
+label-warn-foreground = ${colors.red}
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-foreground = ${colors.red}
+
+
+; ---------------------------------------------------------------------------- ;;
+; SETTINGS
+; ---------------------------------------------------------------------------- ;;
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+
+[global/wm]
+margin-top = 0
+margin-bottom = 5
+
+; ---------------------------------------------------------------------------- ;;
+; MENU
+; ---------------------------------------------------------------------------- ;;
+
+[module/menu-apps]
+type = custom/menu
+;expand-right = true
+format-spacing = 1
+format-background = ${colors.background}
+expand-right= true
+label-open = "  "
+label-open-foreground = ${colors.red}
+label-open-background = ${colors.white}
+label-close = "  "
+label-close-foreground = ${colors.white}
+label-separator = "-"
+label-separator-foreground = #66757F
+
+; Top level
+menu-0-0 = "  "
+menu-0-0-exec = menu-open-1
+menu-0-1 = "  "
+menu-0-1-exec = menu-open-2
+menu-0-2 = "     "
+menu-0-2-exec = menu-open-3
+
+; 1
+menu-1-0 = "  "
+menu-1-0-exec = code &
+menu-1-1 = "  "
+menu-1-1-exec = opera  &
+menu-1-2 = "  "
+menu-1-2-exec = thunar &
+menu-1-3 = "   "
+menu-1-3-exec = lxappearance &
+menu-1-4 = "  "
+menu-1-4-exec = puddletag &
+
+; 2
+menu-2-0 = "  "
+menu-2-0-exec = i3lock-fancy &
+menu-2-1 = "   "
+menu-2-1-exec = pkill x
+menu-2-2 = "   "
+menu-2-2-exec = systemctl reboot
+menu-2-3 = "   "
+menu-2-3-exec = systemctl poweroff
+menu-2-4 = "  "
+menu-2-4-exec = systemctl suspend
+
+# 3
+menu-3-0 = "  "
+menu-3-0-exec = Telegram &
+menu-3-1 = "  "
+menu-3-1-exec = pycharm &
+menu-3-2 = "  "
+menu-3-2-exec = wireshark &
+menu-3-3 = " "
+menu-3-3-exec = sh $HOME/.config/polybar/scripts/Dzen2Info.sh &
