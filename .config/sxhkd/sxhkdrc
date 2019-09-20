@@ -1,5 +1,5 @@
 #──────────────────────────────────
-# ───────────── @w1trtc ────────────
+# ───────────── @euiciowr ─────────
 #──────────────────────────────────
 
 
@@ -11,20 +11,21 @@ super + Escape
 ## reload bspwm config
 super + shift + Escape
 	pkill panel;~/.config/bspwm/bspwmrc
+	notify-send -a 'reload' 'Keybindings reloaded'
 
 locker
   xautolock -time 5 -locker i3lock-fancy
 
 super + x
-  i3lock-fancy -f "Iosevka-Thin" -t "Digite a senha correta para desbloquear!!" -p -g -- scrot -z
+  i3lock-fancy -f "Comfortaa" -t "Digite a senha correta para desbloquear!!"
 
 
 super + Print
-  maim -s -m 10 -f png -b 3 -u -o  /home/ueiciowr/Imagens/Prints/$(date +%d-%m-%y_%H:%M:%S).png | notify-send -i ~/.local/share/icons/customer-service.png -u normal -t 9000 'Screenshot taken and saved to ~/Imagens/Prints'
+  maim -s -m 10 -f png -b 3 -u -o  /home/ghost/Imagens/Prints/$(date +%d-%m-%y_%H:%M:%S).png | notify-send -i ~/.local/share/icons/customer-service.png -u normal -t 9000 'Screenshot taken and saved to ~/Imagens/Prints'
 
 
 Print
-   scrot %Y-%m-%d-%T.png -e 'mv $f /home/ueiciowr/Imagens/Prints/' | notify-send -i ~/.local/share/icons/customer-service.png -u normal -t 9000 'Screenshot taken and saved to ~/Imagens/Prints'
+   scrot %Y-%m-%d-%T.png -e 'mv $f /home/ghost/Imagens/Prints/' | notify-send -i ~/.local/share/icons/customer-service.png -u normal -t 9000 'Screenshot taken and saved to ~/Imagens/Prints'
 
 super + s
 	subl3
@@ -87,7 +88,11 @@ setxkbmap -layout "br"
 #──────────────────────────────────
 # ──────────── Brightness ───────────
 #──────────────────────────────────
+XF86MonBrightnessUp
+    light -A 5
 
+XF86MonBrightnessDown
+    light -U 5
 
 
 #──────────────────────────────────

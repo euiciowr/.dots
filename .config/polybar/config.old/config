@@ -1,0 +1,553 @@
+#───────────────────────────────────────────
+# ──────────────── Colors  ────────────────────
+#───────────────────────────────────────────
+[colors]
+background = #EAE3EA
+;#282A36
+;#1D2021
+;#5a000000
+background-alt = #282828
+foreground = #282A36
+;#f5f5f5
+foreground-alt = #665c54
+primary = #458588
+icons = #934F7E
+;#c2185b
+;#BD2B55
+secondary = #cc241d
+alert = #689d6a
+white = #FFFFFF
+black = #726963
+branco = #ebdbb2
+redbar = #ff5555
+; #490c66 #ea1d75 #fcd700 #00bbb3 
+
+#───────────────────────────────────────────
+# ──────────────── Bar Top  ───────────────────
+#───────────────────────────────────────────
+[bar/top]
+;monitor = ${env:MONITOR:HDMI-1}
+width = 100%
+height = 27
+;offset-x = 1%
+;offset-y = 1%
+;radius = 6.0
+fixed-center = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3
+;line-color = #f00
+
+border-top-size = 4
+border-top-color = ${colors.background}
+border-bottom-size = 0
+border-bottom-color = ${colors.primary}
+
+;padding-left = 0
+;padding-right = 2
+
+module-margin-left = 0
+module-margin-right = 1
+
+font-0 = Fixed:pixelsize=8;0
+font-1 = unifont:size=8:Tewi:fontformat=truetype;0
+font-2 = Font Awesome 5 Free Solid:pixelsize=10;0
+font-3 = featherpatched:pixelsize=10;0
+font-4 = Powerline Extra Symbols:pixelsize=33;0
+font-5 = Wuncon Siji:pixelsize=8;0:antialias=true;0
+font-6 = MaterialIcons:size=9;0
+font-7 = icomoon:size=9;0
+font-8 = FontAwesome:size=9;0
+font-9 = Font Awesome 5 Brands:pixelsize=10;0
+
+
+#───────────────────────────────────────────
+# ──────────────── Mol  ──────────────────────
+#───────────────────────────────────────────
+modules-left = calendar arrow1 space space bspwm
+modules-center = sapce space wallpaper mpd
+modules-right = pulseaudio space backlight space cpu space temperature space battery space coretemps space wlan space memory2 space arrow2 menu-apps
+
+;tray-position = right
+;tray-padding = 2
+;tray-transparent = true
+;tray-background = #0063ff
+
+wm-restack = bspwm
+;wm-restack = i3
+
+;override-redirect = true
+
+;scroll-up = bspwm-desknext
+;scroll-down = bspwm-deskprev
+
+;scroll-up = i3wm-wsnext
+;scroll-down = i3wm-wsprev
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+
+#───────────────────────────────────────────
+# ──────────────── Configs  ───────────────────
+#───────────────────────────────────────────
+[module/memory2]
+type = custom/script
+exec = free -m |awk '/^Mem/ {printf("%u%%",100*$3/$2);}'
+interval = 2
+format =  <label>
+format-prefix = "    "
+format-foreground = ${colors.foreground}
+format-prefix-foreground = ${colors.icons}
+
+
+
+#───────────────────────────────────────────
+# ──────────────── Core  ─────────────────────
+#───────────────────────────────────────────
+[module/coretemps]
+type = custom/script
+exec-if = sensors
+exec = sensors|awk '/Core/{print substr($3, 2, length($3)-5)}'|awk '{if (match($0,/[0-9]+/,m)) print m[0]"°C"}'|tr '\n' ' '
+format =  <label>
+format-prefix = "    "
+format-foreground = ${colors.foreground}
+format-prefix-foreground = ${colors.icons}
+
+
+#───────────────────────────────────────────
+# ──────────────── Bar  ──────────────────────
+#───────────────────────────────────────────
+[module/arrow1]
+type = custom/text
+content = "   "
+content-foreground = ${colors.icons}
+content-background = ${colors.background}
+
+[module/arrow2]
+type = custom/text
+content = "  "
+content-foreground = ${colors.icons}
+content-background = ${colors.background}
+
+[module/space]
+type = custom/text
+content = "  "
+content-foreground = ${colors.background}
+content-background = ${colors.background}
+
+[module/menud]
+type = custom/text
+content = " B301  "
+content-background = ${colors.icons}
+click-left = ~/.config/polybar/menu.sh options
+
+
+#───────────────────────────────────────────
+# ──────────────── Memory  ──────────────────
+#───────────────────────────────────────────
+[module/memory]
+type = internal/memory
+format = <label> <bar-used>
+label = 
+label-foreground = ${colors.primary}
+
+bar-used-width = 10
+bar-used-foreground-0 = ${colors.white}
+bar-used-foreground-1 = ${colors.white}
+bar-used-foreground-2 = ${colors.white}
+bar-used-foreground-3 = ${colors.white}
+
+bar-used-indicator = 
+bar-used-indicator-font = 6
+bar-used-indicator-foreground = #ff
+bar-used-fill = ━
+bar-used-fill-font = 6
+bar-used-empty = ─
+bar-used-empty-font = 6
+bar-used-empty-foreground = #444444
+
+
+#───────────────────────────────────────────
+# ──────────────── VOLUME ──────────────────
+#───────────────────────────────────────────
+[module/pulseaudio]
+type = internal/pulseaudio
+sink = alsa_output.pci-0000_12_00.3.analog-stereo
+use-ui-max = true
+interval = 5
+format-volume = <ramp-volume> <label-volume>
+format-muted = <label-muted>
+label-volume = %percentage%%
+label-muted = 🔇 muted
+label-muted-foreground = #666
+
+; Only applies if <ramp-volume> is used
+ramp-volume-0 = "  "
+ramp-volume-1 = "  "
+ramp-volume-2 = "  "
+
+format-volume-foreground = ${colors.foreground}
+ramp-volume-foreground = ${colors.icons}
+
+
+#───────────────────────────────────────────
+# ───────────────── Wall ────────────────────
+#───────────────────────────────────────────
+[module/wallpaper]
+type = custom/text
+content =  
+content-foreground = ${colors.icons}
+;click-left = ~/.config/polybar/wallpaper.sh x &
+click-left = ~/.config/polybar/wallpaper.sh dd &
+;click-middle = ~/.config/polybar/wallpaper.sh rr &
+click-right = ~/.config/polybar/wallpaper.sh d &
+scroll-up = ~/.config/polybar/wallpaper.sh p &
+scroll-down = ~/.config/polybar/wallpaper.sh a &
+click-middle = scrot %Y-%m-%d-%T.png -e 'mv $f ~/Imagens/Prints/' | notify-send -i ~/.local/share/icons/customer-service.png -u normal -t 9000 'Screenshot taken and saved to ~/Imagens/Prints'
+
+
+#───────────────────────────────────────────
+# ───────────────── Cale ─────────────────────
+#───────────────────────────────────────────
+[module/calendar]
+type = custom/script
+interval = 1
+exec =  date "+%a %H:%M:%S  "
+format =  <label>
+format-prefix = "   "
+format-foreground = ${colors.foreground}
+format-background = ${colors.icons}
+format-padding = 0.5
+label-padding = 0
+;format-underline = ${colors.red}
+click-left =  ~/.config/polybar/calendar2.sh &
+
+
+#───────────────────────────────────────────
+# ───────────────── DATE ────────────────────
+#───────────────────────────────────────────
+[module/date]
+type = internal/date
+interval = 5
+
+date =
+date-alt = %a %d %b %Y
+
+time = %H:%M
+time-alt = %H:%M:%S
+
+format-prefix = 
+format-prefix-foreground = ${colors.foreground-alt}
+;format-underline = #0a6cf5
+
+label = %{F#665c54}────[%{F-} %{F#83a598}%date%%{F-}%{F#b16286} %time%%{F-} %{F#665c54}]────%{F-}
+
+
+#───────────────────────────────────────────
+# ─────────────── Xbackl  ─────────────────────
+#───────────────────────────────────────────
+[module/backlight]
+type = internal/backlight
+; To list available cards use: $ ls -1 /sys/class/backlight/
+card = intel_backlight
+
+format = <ramp> <label>
+;    
+label = %percentage%%
+ramp-0 = "    "
+ramp-1 = "    "
+ramp-2 = "    "
+ramp-3 = "    "
+ramp-4 = "    "
+ramp-foreground = ${colors.icons}
+
+[module/screen]
+type = custom/script
+exec = light -G
+scroll-up = light -A 5
+scroll-down = light -U 5
+format-prefix = "    "
+interval = 0.1
+format-prefix-foreground = ${colors.icons}
+
+
+#───────────────────────────────────────────
+# ─────────────── CPU ──────────────────
+#───────────────────────────────────────────
+[module/cpu]
+type = custom/script
+interval = 1
+exec =  ~/.config/polybar/cpu
+format =  <label>
+format-prefix = "    "
+format-prefix-foreground = ${colors.icons}
+
+#───────────────────────────────────────────
+# ──────────────── BSPWM ───────────────────
+#───────────────────────────────────────────
+[module/bspwm]
+type = internal/bspwm
+format = <label-state> <label-mode>
+reverse-scroll = true
+
+ws-icon-0 = user;
+ws-icon-1 = os;
+ws-icon-2 = web;
+ws-icon-default =
+
+label-focused = %icon%
+label-focused-background = ${colors.background}
+label-focused-foreground =  ${colors.icons}
+label-focused-underline = ${colors.icons}
+label-focused-padding = 7
+
+label-occupied = %icon%
+label-occupied-padding = 7
+label-occupied-foreground = ${colors.icons}
+
+label-urgent = %icon%
+label-urgent-background = #214754
+label-urgent-padding = 7
+
+label-empty = %icon%
+label-empty-foreground = #bdbdbd
+label-empty-padding = 7
+
+label-monocle = 
+label-monocle-padding = 7 
+label-monocle-background = ${colors.primary}
+label-monocle-foreground =  ${colors.primary}
+
+#label-floating = 
+#label-floating-padding = 7
+#label-floating-background = ${colors.background}
+#label-floating-foreground =  ${colors.primary}
+
+
+#───────────────────────────────────────────
+# ────────────────── MPD ────────────────────
+#───────────────────────────────────────────
+[module/mpd]
+type = internal/mpd
+format-online = <icon-prev> <icon-stop> <toggle> <icon-next> <icon-repeat> <icon-random> <bar-progress>  <label-song> %{B-}
+format-stopped = <icon-prev>   <toggle>   <icon-next>   0:00/0:00   %{B-}
+format-online-spacing = 0
+format-prefix = " "
+format-online-padding = 3
+format-offline = <label-offline>
+format-offline-foreground = #777
+label-offline = mpd is off
+label-song-maxlen = 40
+label-song-ellipsis = true
+label-time-foreground =  ${colors.primary}
+
+icon-prev = 
+icon-stop = 
+icon-play = 
+icon-pause = 
+icon-next = 
+
+icon-random = 
+icon-repeat = 
+
+toggle-on-foreground = ${colors.foreground-alt}
+toggle-off-foreground = #777
+
+bar-progress-width = 15
+bar-progress-indicator = 
+bar-progress-indicator-foreground = ${colors.primary}
+bar-progress-indicator-font = 3
+bar-progress-fill = ─
+bar-progress-fill-foreground = ${colors.primary}
+bar-progress-fill-font = 3
+bar-progress-empty = ─
+bar-progress-empty-foreground = ${colors.primary}
+bar-progress-empty-font = 3
+bar-progress-format = %{A4:mpdseek+2: A5:mpdseek-2:}%fill%%indicator%%empty%%{A A}
+
+
+#───────────────────────────────────────────
+# ───────────────── WLAN ────────────────────
+#───────────────────────────────────────────
+[module/wlan]
+type = internal/network
+interface = wlp2s0
+interval = 3.0
+
+format-connected = <ramp-signal> <label-connected>
+;format-connected-underline = ${colors.primary}
+label-connected = %essid%
+
+;format-disconnected = OFFLINE
+format-disconnected = <label-disconnected>
+format-disconnected-underline = ${colors.icons}
+label-disconnected = %ifname% disconnected
+label-disconnected-foreground = ${colors.icons}
+
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
+ramp-signal-0-foreground = ${colors.icons}
+ramp-signal-1-foreground = ${colors.icons}
+ramp-signal-2-foreground = ${colors.icons}
+ramp-signal-3-foreground = ${colors.icons}
+ramp-signal-4-foreground = ${colors.icons}
+
+
+#───────────────────────────────────────────
+# ──────────────── BATTERY ──────────────────
+#───────────────────────────────────────────
+[module/battery]
+type = internal/battery
+full-at = 99
+battery = BAT0
+adapter = ADP1
+poll-interval = 1
+format-charging = <animation-charging><label-charging>
+;format-charging-underline = ${colors.red}
+format-discharging = <ramp-capacity><label-discharging>
+;format-discharging-underline = ${colors.red}
+format-full = <ramp-capacity><label-full>
+label-charging = %percentage%%
+label-discharging = %percentage%%
+label-full = %percentage%%
+label-full-foreground = ${colors.foreground}
+label-discharging-foreground = ${colors.foreground}
+label-charging-foreground = ${colors.foreground}
+format-charging-padding = 2
+format-discharging-padding = 2
+format-ful-padding = 2
+
+ramp-capacity-0 = "  "
+ramp-capacity-1 = "  "
+ramp-capacity-2 = "  "
+ramp-capacity-3 = "  "
+ramp-capacity-4 = "  "
+
+animation-charging-0 = " "
+animation-charging-1 = " "
+animation-charging-2 = " "
+animation-charging-3 = " "
+animation-charging-4 = " "
+animation-charging-framerate = 750
+
+ramp-capacity-0-foreground = ${colors.icons}
+ramp-capacity-1-foreground = ${colors.icons}
+ramp-capacity-2-foreground = ${colors.icons}
+ramp-capacity-3-foreground = ${colors.icons}
+ramp-capacity-4-foreground = ${colors.icons}
+animation-charging-0-foreground = ${colors.icons}
+animation-charging-1-foreground = ${colors.icons}
+animation-charging-2-foreground = ${colors.icons}
+animation-charging-3-foreground = ${colors.icons}
+animation-charging-4-foreground = ${colors.icons}
+
+
+#───────────────────────────────────────────
+# ────────────── TEMPERATURE ────────────────
+#───────────────────────────────────────────
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 60
+
+format = <ramp> <label>
+;format-underline = #f50a4d
+format-warn = <ramp> <label-warn>
+;format-warn-underline = ${colors.primary}
+
+label = %temperature-c%
+label-foreground = ${colors.foreground}
+label-warn = %temperature-c%
+label-warn-foreground = ${colors.foreground}
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-3 = 
+ramp-foreground = ${colors.icons}
+
+
+#───────────────────────────────────────────
+# ──────────────── SETTINGS ──────────────────
+#───────────────────────────────────────────
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+compositing-border = over
+
+[global/wm]
+margin-top = 2
+margin-bottom = 2
+
+
+#───────────────────────────────────────────
+# ─────────────── MENU-APPS ─────────────────
+#───────────────────────────────────────────
+[module/menu-apps]
+type = custom/menu
+;expand-right = true
+format-spacing = 1
+format-background = ${colors.icons}
+content-background = ${colors.icons}
+expand-right= true
+label-open = "   Menu "
+label-open-foreground = ${colors.foreground}
+content-open-foreground = ${colors.icons}
+label-open-background = ${colors.icons}
+label-close = "  "
+label-close-foreground = ${colors.foreground}
+content-close-background = ${colors.icons}
+label-separator = "-"
+label-separator-foreground = ${colors.background}
+
+; Top level
+menu-0-0 = "  "
+menu-0-0-exec = menu-open-1
+menu-0-1 = "  "
+menu-0-1-exec = menu-open-2
+menu-0-2 = "     "
+menu-0-2-exec = menu-open-3
+
+; 1
+menu-1-0 = "  "
+menu-1-0-exec = code &
+menu-1-1 = "  "
+menu-1-1-exec = thunar /home/ghost/OneDrive/CURSOS_SI/Semestre_2/Semestre_2_PED_Rodrigo/ &
+menu-1-2 = "  "
+menu-1-2-exec = nautilus &
+menu-1-3 = "   "
+menu-1-3-exec = lxappearance &
+menu-1-4 = "  "
+menu-1-4-exec = puddletag &
+
+; 2
+menu-2-0 = "  "
+menu-2-0-exec = i3lock-fancy &
+menu-2-1 = "   "
+menu-2-1-exec = pkill x
+menu-2-2 = "   "
+menu-2-2-exec = systemctl reboot
+menu-2-3 = "   "
+menu-2-3-exec = systemctl poweroff
+menu-2-4 = "  "
+menu-2-4-exec = systemctl suspend
+
+; 3
+menu-3-0 = "  "
+menu-3-0-exec = Telegram &
+menu-3-1 = "  "
+menu-3-1-exec = pycharm &
+menu-3-2 = "  "
+menu-3-2-exec = wireshark &
+menu-3-3 = " "
+menu-3-3-exec = sh $HOME/.config/polybar/foosysinfo.sh &
+menu-3-4 = "🌔 "
+menu-3-4-exec = notify-send -i ~/.config/dunst/icons/moon.svg "Fases Lunares" "$(python2 ~/.config/polybar/scripts/moonphase.py desc)" &

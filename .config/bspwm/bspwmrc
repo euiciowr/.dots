@@ -1,16 +1,16 @@
-#! /bin/bash
+#!/bin/bash
 
-bspc monitor -d user os  web arquivos code chat
+bspc monitor -d term chrome system others
 "$HOME"/.config/polybar/launch.sh &
 sxhkd &
 timedatectl set-timezone America/Sao_Paulo
-
+compton &&
 
 # -----------------------------------------
 # bspwm config
 # -----------------------------------------
 bspc config window_gap          0.5
-bspc config border_width        1
+bspc config border_width        0
 bspc config pointer_follows_focus false
 bspc config top_padding  34
 bspc config split_ratio         0.50

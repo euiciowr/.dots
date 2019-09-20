@@ -1,6 +1,13 @@
 # ----------------------------------------------------------------------------##
 # ALIASES
 # ----------------------------------------------------------------------------##
+# Kill
+alias killkill='ps -efw | grep php | grep -v grep | awk '{print $2}' | xargs kill'
+alias kill9='pkill -9'
+
+### Alias Hardware
+alias tlp='sudo tlp-stat'
+alias trimls='lsblk --discard'
 
 ### Alias Nmap
 
@@ -47,6 +54,7 @@ alias clean="sudo rm -rf /var/cache/pacman/pkg/*.*"
 alias pacinsd='sudo pacman -S --asdeps'
 alias pacloc='pacman -Qi'
 alias pacmirror='sudo reflector --country Brazil --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist'
+alias u='sudo haveged -w 1024; sudo pacman-key --init; sudo pacman-key --populate; sudo pacman-key --refresh-keys; sudo pkill haveged; sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak; sudo reflector --verbose --age 8 --fastest 128 --latest 64 --number 32 --sort rate --save /etc/pacman.d/mirrorlist; sudo pacman -Syy'
 
 alias ys="yay -S"
 alias ysua="yay -Syua"
@@ -66,7 +74,6 @@ alias ppss='ps ac'
 alias stx='startx'
 alias tebi="dmesg | nc termbin.com 9999 "
 alias fcc="fc-cache -fv"
-#alias lss='python $HOME/ZSH/better-ls/lsicons.py'
 #alias fi='sudo find / -name'
 alias w='sudo wifi-menu'
 alias driver='sudo lspci -vnn'
@@ -82,7 +89,9 @@ alias yvid='youtube-dl -c'
 alias flac='youtube-dl -x --audio-format flac'
 alias ncm='ncmpcpp'
 alias m='mpd'
-
+alias mergevidaaaaud='ffmpeg -loglevel error -i "$invideo" -i "$inaudio" -strict -2 -codec copy "$outputfile"'
+alias hardqualitysearch='youtube-dl -F'
+alias hardqualitydow='youtube-dl -f'
 
 ## TLP
 alias tlpstat='sudo tlp-stat -s'
@@ -111,10 +120,3 @@ alias dklsrm='docker container rm --force'
 ## Systemd
 alias suspend="systemctl suspend"
 alias power="systemctl power"
-
-## Tela
-alias gamma='xgamma -gamma 1.2'
-
-## appimage
-alias chr='$HOME/Downloads/APPIMAGE/./ungoogled-chromium_71.0.3578.98-2_linux.AppImage --no-sandbox &'
-alias odio='$HOME/Downloads/APPIMAGE/./odio-1.4.0-x86_64.AppImage &'

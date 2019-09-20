@@ -1,21 +1,7 @@
-#source ~/antigen.zsh
-
 powerline-daemon -q
 . /usr/lib/python3.7/site-packages/powerline/bindings/zsh/powerline.zsh
 
-# Bundles from the default repo (robbyrussell's oh-my-zsh).
-#antigen bundle git
-#antigen bundle heroku
-#antigen bundle pip
-#antigen bundle lein
-#antigen bundle command-not-found
-
-# Syntax highlighting bundle.
-#antigen bundle zsh-users/zsh-syntax-highlighting
-
-# Tell Antigen that you're done.
-#antigen apply
-
+setxkbmap -model abnt2 -layout br -variant abnt2
 
 # ----------------------------------------------------------------------------##
 # PLUGINS
@@ -23,19 +9,20 @@ powerline-daemon -q
 
 # Autosugestões p/ ZSH
 # pacman -S zsh-autosuggestions
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+#source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Porta do ZSH da pesquisa da história do shell FISH
-source ~/ZSH/zsh-history-substring-search/zsh-history-substring-search.zsh
+#source ~/ZSH/zsh-history-substring-search/zsh-history-substring-search.zsh
 source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 
 # Destaque de sintaxe
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
 
 test -r ~/ZSH/aliases && source ~/ZSH/aliases
 
 # Syntax coloring# wget https://raw.githubusercontent.com/trapd00r/LS_COLORS/master/LS_COLORS -O ~/.dircolors
-eval $(dircolors -b $HOME/.dircolors)
+#eval $(dircolors -b $HOME/.dircolors)
 
 source ~/ZSH/completion.zsh
 
@@ -60,7 +47,6 @@ COMPLETION_WAITING_DOTS="true"
 
 # You may need to manually set your language environment
 export LANG=pt_BR.UTF-8
-
 
 # ----------------------------------------------------------------------------##
 # SYNTAX-HIGHLIGHTING
@@ -241,21 +227,14 @@ select-word-style bash
 autoload -U url-quote-magic
 zle -N self-insert url-quote-magic
 
-# Powerfonts
-#if [[ -r/usr/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh ]]; then
-#    source /usr/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
-#fi
-
-##################################################
-##################################################
-##################################################
-##################################################
-##################################################
+## -------------------------------------------------------------------------------------- ##
 
 # Bindkeys
 bindkey -v
+
 #Cleaning terminal screen with key <ESC>:
 bindkey '^[' clear-screen
+
 # Kill input from the current point to the end of line with Ctrl-k
 bindkey '^k' kill-line
 
@@ -290,3 +269,142 @@ key[PageDown]=${terminfo[knp]}
 [[ -n "${key[Down]}" ]] && bindkey "${key[Down]}"         down-line-or-beginning-search
 [[ -n "${key[Left]}"    ]]  && bindkey  "${key[Left]}"    backward-char
 [[ -n "${key[Right]}" ]] && bindkey "${key[Right]}" forward-char
+
+#--------------------------------------------------------------------#
+# Global Configuration Variables                                     #
+#--------------------------------------------------------------------#
+
+# Color to use when highlighting suggestion
+# Uses format of `region_highlight`
+# More info: http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html#Zle-Widgets
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
+
+# Prefix to use when saving original versions of bound widgets
+ZSH_AUTOSUGGEST_ORIGINAL_WIDGET_PREFIX=autosuggest-orig-
+
+# Widgets that clear the suggestion
+ZSH_AUTOSUGGEST_CLEAR_WIDGETS=(
+	history-search-forward
+	history-search-backward
+	history-beginning-search-forward
+	history-beginning-search-backward
+	history-substring-search-up
+	history-substring-search-down
+	up-line-or-history
+	down-line-or-history
+	accept-line
+)
+
+# Widgets that accept the entire suggestion
+ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(
+	forward-char
+	end-of-line
+	vi-forward-char
+	vi-end-of-line
+	vi-add-eol
+)
+
+# Widgets that accept the entire suggestion and execute it
+ZSH_AUTOSUGGEST_EXECUTE_WIDGETS=(
+)
+
+# Widgets that accept the suggestion as far as the cursor moves
+ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS=(
+	forward-word
+	vi-forward-word
+	vi-forward-word-end
+	vi-forward-blank-word
+	vi-forward-blank-word-end
+)
+
+# Widgets that should be ignored (globbing supported but must be escaped)
+ZSH_AUTOSUGGEST_IGNORE_WIDGETS=(
+	orig-\*
+	beep
+	run-help
+	set-local-history
+	which-command
+	yank
+)
+
+# Max size of buffer to trigger autosuggestion. Leave undefined for no upper bound.
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=
+
+# Pty name for calculating autosuggestions asynchronously
+ZSH_AUTOSUGGEST_ASYNC_PTY_NAME=zsh_autosuggest_pty
+
+#  Is a global variable that defines how the query should be highlighted inside a matching command
+HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='bg=default,fg=default,bold'
+
+# Is a global variable that defines how the query should be highlighted when no commands in the history match it.
+HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND='bg=default,fg=white,bold'
+
+# Is a global variable that defines how the command history will be searched for your query. Its default value causes this script to perform a case-insensitive search
+HISTORY_SUBSTRING_SEARCH_GLOBBING_FLAGS='i'
+
+# To define styles for nested brackets up to level 4
+ZSH_HIGHLIGHT_STYLES[bracket-level-1]='fg=blue,bold'
+ZSH_HIGHLIGHT_STYLES[bracket-level-2]='fg=red,bold'
+ZSH_HIGHLIGHT_STYLES[bracket-level-3]='fg=yellow,bold'
+ZSH_HIGHLIGHT_STYLES[bracket-level-4]='fg=magenta,bold'
+
+#ZSH_HIGHLIGHT_STYLES[bracket-error]='fg=blue,bold'
+
+# Declare the variable
+typeset -A ZSH_HIGHLIGHT_STYLES
+
+# To differentiate aliases from other command types
+ZSH_HIGHLIGHT_STYLES[alias]='fg=magenta'
+
+ZSH_HIGHLIGHT_STYLES[function]='fg=yellow'
+
+ZSH_HIGHLIGHT_STYLES[builtin]='fg=green'
+
+ZSH_HIGHLIGHT_STYLES[command]='fg=red'
+
+ZSH_HIGHLIGHT_STYLES[precommand]='fg=blue'
+
+ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=127'
+
+ZSH_HIGHLIGHT_STYLES[redirection]='fg=167'
+
+ZSH_HIGHLIGHT_STYLES[reserved-word]='fg=253'
+
+ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=cyan'
+
+ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=208'
+
+ZSH_HIGHLIGHT_STYLES[back-quoted-argument]='fg=135'
+
+ZSH_HIGHLIGHT_STYLES[single-quoted-argument]='fg=123'
+
+ZSH_HIGHLIGHT_STYLES[double-quoted-argument]='fg=105'
+
+ZSH_HIGHLIGHT_STYLES[dollar-double-quoted-argument]='fg=14'
+
+ZSH_HIGHLIGHT_STYLES[back-double-quoted-argument]='fg=7'
+
+ZSH_HIGHLIGHT_STYLES[back-dollar-quoted-argument]='fg=30'
+
+ZSH_HIGHLIGHT_STYLES[path_pathseparator]='fg=15'
+
+ZSH_HIGHLIGHT_STYLES[double-quoted-argument]='fg=220'
+
+# To have paths colored instead of underlined
+ZSH_HIGHLIGHT_STYLES[path]='fg=cyan'
+
+ZSH_HIGHLIGHT_STYLES[path_pathseparator]='fg=208'
+
+ZSH_HIGHLIGHT_STYLES[path_prefix]='fg=161'
+
+ZSH_HIGHLIGHT_STYLES[path_prefix_pathseparator]='fg=154'
+
+# To enable highlighting of globbing expressions
+ZSH_HIGHLIGHT_STYLES[globbing]='yellow'
+
+# To enable cursor highlighting
+ZSH_HIGHLIGHT_STYLES[cursor]='bg=cyan'
+
+#The style for the whole line
+ZSH_HIGHLIGHT_STYLES[line]='bold'
+TERM=xterm-256color

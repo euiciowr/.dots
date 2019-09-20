@@ -28,22 +28,22 @@ Xft.hintstyle:          hintsfull
 !                        URxvt settings
 !-----------------------------------------------------------------------
 
-#define base00 #191919
-#define base01 #202020
+#define base00 #FFFFFF
+#define base01 #282A36
 #define base02 #303030
 #define base03 #5f5a60
 #define base04 #505050
-#define base05 #a7a7a7
+#define base05 #303030
 #define base06 #808080
-#define base07 #ffffff
+#define base07 #282A36
 #define base08 #C02A4C
 #define base09 #BD2B55
 #define base0A #c3ba63
 #define base0B #84b97c
 #define base0C #BD2B55
 #define base0D #639ee4
-#define base0E #CCD6DD
-#define base0F #CCD6DD
+#define base0E #303030
+#define base0F #303030
 
 *foreground:   base05
 *background:   base00
@@ -98,7 +98,7 @@ URxvt*scrollWithBuffer:  true
 URxvt*scrollTtyKeypress: true
 
 ! fonts
-urxvt.font:xft:pragmatapro for powerline:size=10,xft:meguri:pixelsize=9,xft:PowerlineSymbols:size=9,xft:Droid Sans Mono for Powerline Plus Nerd File Types Mono:pixelsize=9,xft:FontAwesome:size=10
+urxvt.font:xft:Iosevka Slab:size=12,xft:meguri:pixelsize=11,xft:PowerlineSymbols:size=9,xft:Droid Sans Mono for Powerline Plus Nerd File Types Mono:pixelsize=9,xft:FontAwesome:size=10
 
 URxvt.letterSpace:       true
 
@@ -129,7 +129,7 @@ URxvt.keysym.M-u: perl:     url-select:select_next
 URxvt.url-select.autocopy:  true
 URxvt.url-select.button:    2
 URxvt.url-select.underline: true
-URxvt.url-launcher:         /usr/bin/google-chrome-stable
+URxvt.url-launcher:         /usr/bin/opera
 URxvt.matcher.button:       1
 
 !! CopyPaste Keys
