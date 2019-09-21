@@ -1,8 +1,4 @@
-#──────────────────────────────────
-# ───────────── @euiciowr ─────────
-#──────────────────────────────────
-
-
+# ------------------- Atalhos ------------------- #
 # make sxhkd reload its configuration files:
 super + Escape
   pkill -USR1 -x sxhkd; \
@@ -17,7 +13,7 @@ locker
   xautolock -time 5 -locker i3lock-fancy
 
 super + x
-  i3lock-fancy -f "Comfortaa" -t "Digite a senha correta para desbloquear!!"
+  i3lock-fancy -f "Comfortaa" -t "Please, insert correct password to enter!!"
 
 
 super + Print
@@ -69,25 +65,18 @@ super + ctrl + b
 super + w
 	wireshark
 
-# settings dmenu rofi
 super + c
 	exec $HOME/.config/polybar/configs
 
 super + d
-	rofi -show drun -sidebar-mode -config $HOME/.config/rofi/relaxrun.rasi
+	rofi -combi-modi  -show drun -sidebar-mode -config $HOME/.config/rofi/relaxrun.rasi
 
 
-
-#──────────────────────────────────
-# ─────── Setup keyboard layout ──────
-#──────────────────────────────────
+# ------------------- Setup keyboard layout ------------------- #
 setxkbmap -layout "br"
 
 
-
-#──────────────────────────────────
-# ──────────── Brightness ───────────
-#──────────────────────────────────
+# ------------------- Brightness ------------------- #
 XF86MonBrightnessUp
     light -A 5
 
@@ -95,9 +84,7 @@ XF86MonBrightnessDown
     light -U 5
 
 
-#──────────────────────────────────
-# ───────────── Volume ─────────────
-#──────────────────────────────────
+# ------------------- Volume ------------------- #
 XF86AudioRaiseVolume
     amixer set Master 5%+ unmute
 
@@ -105,10 +92,7 @@ XF86AudioLowerVolume
     amixer set Master 5%- unmute
 
 
-
-#──────────────────────────────────
-# ────────── bspwm hotkeys ─────────
-#──────────────────────────────────
+# ------------------- Sxhkd hotkeys ------------------- #
 # close and kill
 super + {_,shift + } q
 	bspc node -{c,k}
@@ -130,10 +114,7 @@ super + g
 	bspc node -s biggest
 
 
-
-#──────────────────────────────────
-# ─────────── state/flags ────────────
-#──────────────────────────────────
+# ------------------- State flags ------------------- #
 # set the window state
 super + shift + space
 	bspc node -t {floating,tiled}
@@ -151,10 +132,7 @@ super + alt + Escape
 	bspc quit
 
 
-
-#──────────────────────────────────
-# ─────────── focus/swap ────────────
-#──────────────────────────────────
+# ------------------- Focus swap ------------------- #
 # focus the node in the given direction
 super + {_,shift + }{h,j,k,l}
 	bspc node -{f,s} {west,south,north,east}
@@ -186,10 +164,7 @@ super + {_,shift + }{1-9,0}
 	bspc {desktop -f,node -d} '^{1-9,10}'
 
 
-
-#──────────────────────────────────
-# ──────────── preselect ────────────
-#──────────────────────────────────
+# ------------------- Preselect ------------------- #
 # preselect the direction
 super + ctrl + {h,j,k,l}
 	bspc node -p {west,south,north,east}
@@ -207,10 +182,7 @@ super + ctrl + shift + space
 	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
 
 
-
-#──────────────────────────────────
-# ─────────── move/resize ───────────
-#──────────────────────────────────
+# ------------------- Move/Resize ------------------- #
 # expand a window by moving one of its side outward | gaps
 super + alt + {h,j,k,l}
 	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}

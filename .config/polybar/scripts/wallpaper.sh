@@ -6,7 +6,7 @@
 dir="${HOME}/Imagens/Wallpapers/"
 unsplash_dir="${XDG_PICTURES_DIR:-${HOME}/img}/unsplash"
 default="$dir/Imagens/Wallpapers/wallhaven-726661_1920x1080.png"
-ultima="/home/ghost/Imagens/Wallpapers/wallhaven-83dy9k_1920x1080.png"
+ultima="/home/ghost/Imagens/Wallpapers/wallhaven-724791_1920x1080.png"
 modo="--bg-fill"
 indice=0
 i=0
