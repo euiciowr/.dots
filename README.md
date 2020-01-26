@@ -1,4 +1,4 @@
-# .dots
+# dotfiles
 
 <p align="center"> 
 <img src="https://raw.githubusercontent.com/euiciowr/.dots/master/screenshots/7iwai15WuuZ-1YLS6UzvVdC4vtbpjLMIoG8kABoHmrNLML.width-808.png" alt="drawing" width="200">
@@ -7,7 +7,7 @@
 <img src="https://raw.githubusercontent.com/euiciowr/.dots/master/screenshots/2019-09-18-17%3A17%3A14.png">
 
 
-## My personal  dotfiles.
+## My personal dotfiles.
 
  ```SETUP```
  ===========
